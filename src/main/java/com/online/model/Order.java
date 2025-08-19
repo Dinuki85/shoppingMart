@@ -23,7 +23,7 @@ public class Order {
 
     @JsonIgnore
     @ManyToOne
-    private Shop Shop;
+    private Shop shop;
 
     private Long totalAmount;
 
