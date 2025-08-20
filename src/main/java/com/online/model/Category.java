@@ -17,9 +17,12 @@ public class Category {
 
     private String name;
 
-    @JsonIgnore
     @ManyToOne
+    @JsonIgnore
     private Shop shop;
+
+
+
 
 
 

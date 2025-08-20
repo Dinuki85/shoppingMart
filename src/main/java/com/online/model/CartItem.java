@@ -26,7 +26,7 @@ public class CartItem {
 
     private int quantity;
 
-    private List<Integer> weights;
+    private List<String> weights;
 
     private Long totalPrice;
 
