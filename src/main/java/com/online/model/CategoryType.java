@@ -21,12 +21,19 @@ public class CategoryType {
 
     private String name;
 
+    @OneToMany(mappedBy = "category" ,cascade = CascadeType.ALL)
+    private List<CategoryType> categoryTypes = new ArrayList<>();
+
     @JsonIgnore
     @ManyToOne
     private Shop shop;
 
-    @OneToMany(mappedBy = "category" ,cascade = CascadeType.ALL)
-    private List<CategoryType> categoryTypes = new ArrayList<>();
+    private boolean isStock = true;
+
+
+
+
+
 
 
 }
