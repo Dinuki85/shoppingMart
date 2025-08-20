@@ -43,7 +43,9 @@ public class AdminShopController {
 
     //Delete the shop
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<MessageResponse> deleteShop(@RequestBody CreateShopRequest req, @RequestHeader("Authorization" ) String jwt,@PathVariable Long id) throws Exception {
+    public ResponseEntity<MessageResponse> deleteShop(
+            @RequestHeader("Authorization" ) String jwt,
+            @PathVariable Long id) throws Exception {
         User user =userService.findUserByJwtToken(jwt);
         shopService.deleteShop(id);
 
@@ -55,7 +57,9 @@ public class AdminShopController {
 
        //Update Shop Status
     @PutMapping("/update/status/{id}")
-    public ResponseEntity<Shop> updateShopStatus(@RequestBody CreateShopRequest req, @RequestHeader("Authorization" ) String jwt,@PathVariable Long id) throws Exception {
+    public ResponseEntity<Shop> updateShopStatus(
+            @RequestHeader("Authorization" ) String jwt,
+            @PathVariable Long id) throws Exception {
         User user =userService.findUserByJwtToken(jwt);
         Shop shop= shopService.updateShopStatus(id);
 
@@ -65,7 +69,8 @@ public class AdminShopController {
 
     //Find Shop By User id
     @GetMapping("/find/shop/user/{id}")
-    public ResponseEntity<Shop> findShopByUserId(@RequestBody CreateShopRequest req, @RequestHeader("Authorization" ) String jwt) throws Exception {
+    public ResponseEntity<Shop> findShopByUserId(
+            @RequestHeader("Authorization" ) String jwt) throws Exception {
         User user =userService.findUserByJwtToken(jwt);
         Shop shop= shopService.getShopByUserId(user.getId());
 
