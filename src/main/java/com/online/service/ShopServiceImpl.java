@@ -86,10 +86,10 @@ public class ShopServiceImpl  implements ShopService{
         shopRepository.delete(shop);
 
     }
-
+    //Get all the shops
     @Override
     public List<Shop> getAllShops() {
-        return List.of();
+        return shopRepository.findAll();
     }
 
     @Override
