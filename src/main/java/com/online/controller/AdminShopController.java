@@ -3,6 +3,7 @@ package com.online.controller;
 import com.online.model.Shop;
 import com.online.model.User;
 import com.online.request.CreateShopRequest;
+import com.online.response.MessageResponse;
 import com.online.service.ShopService;
 import com.online.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class AdminShopController {
     @Autowired
     private UserService userService;
 
-    @PostMapping()
+    @PostMapping("/create")
     public ResponseEntity<Shop> createShop(@RequestBody CreateShopRequest req, @RequestHeader("Authorization" ) String jwt) throws Exception {
         User user =userService.findUserByJwtToken(jwt);
 
@@ -28,6 +29,7 @@ public class AdminShopController {
 
         return new ResponseEntity<>(shop, HttpStatus.CREATED);
     }
+    //update the shop
 
     @PutMapping("/update/{id}")
     public ResponseEntity<Shop> updateShop(@RequestBody CreateShopRequest req, @RequestHeader("Authorization" ) String jwt,@PathVariable Long id) throws Exception {
@@ -37,6 +39,22 @@ public class AdminShopController {
 
         return new ResponseEntity<>(shop, HttpStatus.CREATED);
     }
+
+    //Delete the shop
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<MessageResponse> deleteShop(@RequestBody CreateShopRequest req, @RequestHeader("Authorization" ) String jwt,@PathVariable Long id) throws Exception {
+        User user =userService.findUserByJwtToken(jwt);
+        shopService.deleteShop(id);
+
+        MessageResponse res = new MessageResponse();
+        res.setMessage("Shop deleted successfully");
+        return new ResponseEntity<>(res, HttpStatus.CREATED);
+    }
+
+
+
+
+
 
 
 
