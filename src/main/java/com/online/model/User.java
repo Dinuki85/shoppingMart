@@ -43,7 +43,7 @@ public class User {
 
     //When deleting the user from the database the users' address also will be deleted
     @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<Address> addresses  = new ArrayStack<>();
+    private List<Address> addresses  = new ArrayList<>();
 
 
 

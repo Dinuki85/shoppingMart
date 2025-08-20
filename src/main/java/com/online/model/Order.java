@@ -13,6 +13,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "order") //For the naming conversion
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -17,4 +17,6 @@ public class Weights {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id ;
+
+
 }
