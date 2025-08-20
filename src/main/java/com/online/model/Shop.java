@@ -25,7 +25,7 @@ public class Shop {
     private String name;
     private String description;
 
-    private String cuisinType;
+    private String cuisineType;
 
     @OneToOne
     private Address address;

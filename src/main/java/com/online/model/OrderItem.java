@@ -23,7 +23,7 @@ public class OrderItem {
 
     private Long totalPrice;
 
-    private List<Integer> weights;
+    private List<String> weights;
 
 
 

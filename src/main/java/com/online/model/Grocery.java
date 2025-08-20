@@ -44,7 +44,7 @@ public class Grocery {
     private boolean isSeasonal;
 
     @ManyToMany
-    private List<Weights> weights = new ArrayList<>();
+    private List<WeightsItems> weights = new ArrayList<>();
 
 
     private Date creationDate;
