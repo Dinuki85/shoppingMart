@@ -19,6 +19,7 @@ public class WeightsItems {
     private String name;
 
 
+
     @ManyToOne
     private WeightsCategory category;
 

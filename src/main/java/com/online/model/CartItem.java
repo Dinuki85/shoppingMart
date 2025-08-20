@@ -15,7 +15,7 @@ import java.util.List;
 public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id ;
+    private Long id;
 
     @ManyToOne
     @JsonIgnore
@@ -25,6 +25,7 @@ public class CartItem {
     private Grocery grocery;
 
     private int quantity;
+
 
     private List<String> weights;
 

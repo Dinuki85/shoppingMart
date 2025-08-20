@@ -42,7 +42,7 @@ public class User {
     private List<ShopsDto>favorites = new ArrayList();
 
     //When deleting the user from the database the users' address also will be deleted
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Address> addresses  = new ArrayList<>();
 
 

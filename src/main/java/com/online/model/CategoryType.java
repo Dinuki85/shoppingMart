@@ -21,8 +21,17 @@ public class CategoryType {
 
     private String name;
 
-    @OneToMany(mappedBy = "categoryTypes" ,cascade = CascadeType.ALL)
-    private List<CategoryType> categoryTypes = new ArrayList<>();
+    // ✅ parent reference
+    @ManyToOne
+    @JoinColumn(name = "parent_id")
+    private CategoryType parent;
+
+    // ✅ children reference
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CategoryType> children = new ArrayList<>();
+
+  /*  @OneToMany(mappedBy = "category" ,cascade = CascadeType.ALL)
+    private List<CategoryType> categoryTypes = new ArrayList<>();*/
 
     @JsonIgnore
     @ManyToOne
