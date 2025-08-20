@@ -46,9 +46,18 @@ public class AppConfig {
                       "http://localhost:3000/"
               ));
 
+              //Allowed t all the methods (POST,GET,PUT,DELETE,...)
               cfg.setAllowedMethods(Collections.singletonList("*"));
 
-               return null;
+              //Allow to credentials
+                cfg.setAllowCredentials(true);
+
+                cfg.setAllowedHeaders(Collections.singletonList("*"));
+
+                cfg.setExposedHeaders(Arrays.asList("Authorization"));
+                cfg.setMaxAge(3600L);
+
+               return cfg;
             }
         };
 
