@@ -2,21 +2,29 @@ package com.online.controller;
 
 import com.online.config.JwtProvider;
 import com.online.model.Cart;
+import com.online.model.USER_ROLE;
 import com.online.model.User;
 import com.online.repository.CartRepository;
 import com.online.repository.UserRepository;
+import com.online.request.LoginRequest;
 import com.online.response.AuthResponse;
 import com.online.service.CustomUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Collection;
 
 @RestController
 @RequestMapping("/auth")
@@ -37,6 +45,7 @@ public class AuthController {
     private CartRepository cartRepository;
 
 
+    @PostMapping("/signup")
     //write method for the sign in
     public ResponseEntity<AuthResponse> createUserHandler(@RequestBody User user) throws Exception {
 
@@ -81,7 +90,56 @@ public class AuthController {
     }
 
 
+    @PostMapping("/signin")
+    //create Login method
 
+    public ResponseEntity<AuthResponse> signin(@RequestBody LoginRequest request){
+        String username= request.getEmail();
+        String password = request.getPassword();
+
+        //if the username and password correct then authenticate it
+        Authentication authentication = authenticate(username,password);
+        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+
+        String role = authorities
+                .isEmpty()?null:authorities.iterator().next().getAuthority();
+
+
+        //Generate the token
+
+        String jwt = jwtProvider.generateToken(authentication);
+
+        //Create auth response object
+        AuthResponse authResponse = new AuthResponse();
+        authResponse.setJwt(jwt);
+        authResponse.setMessage("Successfully Registered");
+        authResponse.setRole(USER_ROLE.valueOf(role));
+
+        return new ResponseEntity<>(authResponse, HttpStatus.OK);
+
+
+
+    }
+
+    private Authentication authenticate(String username, String password) {
+
+        UserDetails userDetails = customUserDetailService.loadUserByUsername(username);
+        if (userDetails==null){
+            throw new BadCredentialsException("Invalid UserName");
+
+
+        }
+
+        //Check if the password is matches with our database or not
+        if(!passwordEncoder.matches(password,userDetails.getPassword())){
+           throw new BadCredentialsException("Invalid Password");
+
+        }
+
+
+        return new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
+
+    }
 
 
 }
