@@ -6,6 +6,7 @@ import com.online.model.Shop;
 import com.online.model.User;
 import com.online.repository.AddressRepository;
 import com.online.repository.ShopRepository;
+import com.online.repository.UserRepository;
 import com.online.request.CreateShopRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class ShopServiceImpl  implements ShopService{
 
 
     @Autowired
-    private UserService userService;
+    private UserRepository userRepository;
 
 
     //Method for creating a new shop and save it
@@ -124,7 +125,24 @@ public class ShopServiceImpl  implements ShopService{
 
     @Override
     public ShopsDto addToFavourite(Long shopId, User user) throws Exception {
-        return null;
+
+        //First search for the shop by id
+        Shop  shop =findShopBYId(shopId);
+
+        ShopsDto dto = new ShopsDto();
+        dto.setDescription(shop.getDescription());
+        dto.setImages(shop.getImages());
+        dto.setTitle(shop.getName());
+
+        dto.setId(shopId);
+
+        if(user.getFavorites().contains(dto)){
+            user.getFavorites().remove(dto);
+        }
+        else user.getFavorites().add(dto);
+
+        userRepository.save(user);
+        return dto;
     }
 
     @Override
