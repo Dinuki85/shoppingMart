@@ -147,6 +147,12 @@ public class ShopServiceImpl  implements ShopService{
 
     @Override
     public Shop updateShopStatus(Long id) throws Exception {
-        return null;
+        //First search for the shop by id
+        Shop  shop =findShopBYId(id);
+
+        shop.setOpen(!shop.isOpen());
+
+
+        return shopRepository.save(shop);
     }
 }
