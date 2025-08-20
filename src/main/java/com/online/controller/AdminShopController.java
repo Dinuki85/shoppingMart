@@ -48,8 +48,23 @@ public class AdminShopController {
 
         MessageResponse res = new MessageResponse();
         res.setMessage("Shop deleted successfully");
-        return new ResponseEntity<>(res, HttpStatus.CREATED);
+        return new ResponseEntity<>(res, HttpStatus.OK);
     }
+
+
+    //Update Shop Status
+    @PutMapping("/update/status/{id}")
+    public ResponseEntity<Shop> updateShopStatus(@RequestBody CreateShopRequest req, @RequestHeader("Authorization" ) String jwt,@PathVariable Long id) throws Exception {
+        User user =userService.findUserByJwtToken(jwt);
+       Shop shop= shopService.updateShopStatus(id);
+
+        return new ResponseEntity<>(shop, HttpStatus.OK);
+    }
+
+
+
+
+
 
 
 
