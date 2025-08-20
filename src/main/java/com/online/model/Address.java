@@ -1,7 +1,13 @@
 package com.online.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Address {
     @Id
@@ -10,6 +16,17 @@ public class Address {
 
     @ManyToOne
     private User user;
+
+    private String StreetAddress;
+
+    private String city;
+
+    private String stateProvince;
+
+    private String postalCode;
+
+    private String country;
+
 
 
 
