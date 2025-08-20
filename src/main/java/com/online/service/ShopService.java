@@ -16,7 +16,7 @@ public interface ShopService {
 
     public List<Shop> getAllShops();
 
-    public List<Shop> searchShop();
+    public List<Shop> searchShop(String keyword);
 
     public Shop findShopBYId(Long id) throws Exception;
 
