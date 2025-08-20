@@ -9,6 +9,9 @@ import com.online.response.AuthResponse;
 import com.online.service.CustomUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,6 +59,21 @@ public class AuthController {
         Cart cart = new Cart();
         cart.setCustomer(savedUser);
         cartRepository.save(cart);
+
+
+        //Created Authentication method
+
+        //Generating Tokens
+        Authentication authentication = new UsernamePasswordAuthenticationToken(user.getEmail(),user.getPassword());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        String jwt = jwtProvider.generateToken(authentication);
+
+        //Create auth response
+        AuthResponse authResponse = new AuthResponse();
+        authResponse.setJwt(jwt);
+        authResponse.setMessage("Successfully Registered");
+        authResponse.setRole(savedUser.getRole());
 
         return null;
     }
