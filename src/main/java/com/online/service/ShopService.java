@@ -20,7 +20,7 @@ public interface ShopService {
 
     public Shop findShopBYId(Long id) throws Exception;
 
-    public Shop getShopByUserId(Long UserId)throws Exception;
+    public Shop getShopByUserId(Long userId)throws Exception;
 
     public ShopsDto addToFavourite(Long shopId,User user)throws Exception;
 

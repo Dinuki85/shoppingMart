@@ -93,11 +93,13 @@ public class ShopServiceImpl  implements ShopService{
         return shopRepository.findAll();
     }
 
+    //Search shop
     @Override
     public List<Shop> searchShop(String keyword) {
         return shopRepository.findBySearchQUesry(keyword) ;
     }
 
+    //Find the shop by shop id
     @Override
     public Shop findShopBYId(Long id) throws Exception {
         Optional<Shop> opt = shopRepository.findById(id);
@@ -110,8 +112,14 @@ public class ShopServiceImpl  implements ShopService{
     }
 
     @Override
-    public Shop getShopByUserId(Long UserId) throws Exception {
-        return null;
+    public Shop getShopByUserId(Long userId) throws Exception {
+      Shop shop = shopRepository.findByOwnerId(userId);
+
+      if(shop == null){
+          throw new Exception("Shop Not Foudn with owner id : "+userId);
+      }
+
+        return shop;
     }
 
     @Override
