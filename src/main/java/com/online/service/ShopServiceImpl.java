@@ -48,8 +48,25 @@ public class ShopServiceImpl  implements ShopService{
     }
 
     @Override
-    public Shop updateShop(Long ShopId, CreateShopRequest updatedShop) throws Exception {
-        return null;
+    public Shop updateShop(Long shopId, CreateShopRequest updatedShop) throws Exception {
+       Shop shop = findShopBYId(shopId);
+
+       if(shop.getCuisineType()!=null)
+       {
+           shop.setCuisineType(updatedShop.getCuisineType());
+       }
+
+       if(shop.getDescription()!=null){
+           shop.setDescription(updatedShop.getDescription());
+
+       }
+
+       if(shop.getName()!=null){
+           shop.setName(updatedShop.getName());
+       }
+
+
+        return shopRepository.save(shop);
     }
 
     @Override

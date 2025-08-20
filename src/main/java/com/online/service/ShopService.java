@@ -10,7 +10,7 @@ import java.util.List;
 public interface ShopService {
     public Shop createShop(CreateShopRequest req, User user);
 
-    public Shop updateShop(Long ShopId,CreateShopRequest updatedShop) throws Exception;
+    public Shop updateShop(Long shopId,CreateShopRequest updatedShop) throws Exception;
 
     public void deleteShop(Long shopId)throws Exception;
 
