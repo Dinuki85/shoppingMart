@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService{
     public User findUserByJwtToken(String jwt) throws Exception {
        String email =  jwtProvider.getEmailFromJwtToken(jwt);
 
-       User use = findUserByEmail(email);
+       User user = findUserByEmail(email);
 
         return user;
     }
@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService{
         User user = userRepository.findByEmail(email);
 
         if(user == null){
-            throw new Exception("User not Found")
+            throw new Exception("User not Found");
         }
         return user;
     }

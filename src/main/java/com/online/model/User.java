@@ -27,7 +27,10 @@ public class User {
 
     private String email;
 
+    //If the password is showing in the frontend it will be sensitive thing.
+    @JsonIgnore
     private String password;
+
 
     private USER_ROLE role = USER_ROLE.ROLE_CUSTOMER;
 
