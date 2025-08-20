@@ -21,6 +21,7 @@ public class AdminShopController {
     @Autowired
     private UserService userService;
 
+    //Create a new shop
     @PostMapping("/create")
     public ResponseEntity<Shop> createShop(@RequestBody CreateShopRequest req, @RequestHeader("Authorization" ) String jwt) throws Exception {
         User user =userService.findUserByJwtToken(jwt);
