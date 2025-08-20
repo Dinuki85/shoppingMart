@@ -103,7 +103,7 @@ public class ShopServiceImpl  implements ShopService{
         Optional<Shop> opt = shopRepository.findById(id);
 
         if(opt.isEmpty()){
-            throw new Exception("Shop Not Found with id : "+id)
+            throw new Exception("Shop Not Found with id : "+id);
         }
 
         return opt.get();
