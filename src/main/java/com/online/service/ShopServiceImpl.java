@@ -47,6 +47,7 @@ public class ShopServiceImpl  implements ShopService{
         return shopRepository.save(shop);
     }
 
+    //Update the restaurant details
     @Override
     public Shop updateShop(Long shopId, CreateShopRequest updatedShop) throws Exception {
        Shop shop = findShopBYId(shopId);
@@ -80,6 +81,9 @@ public class ShopServiceImpl  implements ShopService{
 
     @Override
     public void deleteShop(Long shopId) throws Exception {
+        Shop shop = findShopBYId(shopId);
+
+        shopRepository.delete(shop);
 
     }
 
