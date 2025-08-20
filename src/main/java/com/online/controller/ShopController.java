@@ -42,4 +42,15 @@ public class ShopController {
 
         return new ResponseEntity<>(shop, HttpStatus.CREATED);
     }
+
+    @GetMapping("/find/{id}")
+    public ResponseEntity<Shop> findShopById(
+            @PathVariable Long id,
+            @RequestHeader("Authorization" ) String jwt) throws Exception {
+        User user =userService.findUserByJwtToken(jwt);
+
+        Shop shop = shopService.findShopBYId(id);
+
+        return new ResponseEntity<>(shop, HttpStatus.CREATED);
+    }
 }
