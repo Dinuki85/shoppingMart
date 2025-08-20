@@ -117,8 +117,6 @@ public class AuthController {
 
         return new ResponseEntity<>(authResponse, HttpStatus.OK);
 
-
-
     }
 
     private Authentication authenticate(String username, String password) {
@@ -129,6 +127,8 @@ public class AuthController {
 
 
         }
+
+
 
         //Check if the password is matches with our database or not
         if(!passwordEncoder.matches(password,userDetails.getPassword())){
