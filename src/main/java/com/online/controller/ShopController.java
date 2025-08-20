@@ -31,4 +31,15 @@ public class ShopController {
 
         return new ResponseEntity<>(shop, HttpStatus.CREATED);
     }
+
+
+    @GetMapping("/getAll")
+    public ResponseEntity<List<Shop>> getAllShops(
+            @RequestHeader("Authorization" ) String jwt) throws Exception {
+        User user =userService.findUserByJwtToken(jwt);
+
+        List<Shop> shop = shopService.getAllShops();
+
+        return new ResponseEntity<>(shop, HttpStatus.CREATED);
+    }
 }
