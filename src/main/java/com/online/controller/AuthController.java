@@ -90,19 +90,19 @@ public class AuthController {
     }
 
 
-    @PostMapping("/signin")
+    @PostMapping("/signing")
     //create Login method
 
-    public ResponseEntity<AuthResponse> signin(@RequestBody LoginRequest request){
+    public ResponseEntity<AuthResponse> signing(@RequestBody LoginRequest request){
         String username= request.getEmail();
         String password = request.getPassword();
 
         //if the username and password correct then authenticate it
         Authentication authentication = authenticate(username,password);
+
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 
-        String role = authorities
-                .isEmpty()?null:authorities.iterator().next().getAuthority();
+        String role = authorities.isEmpty()?null:authorities.iterator().next().getAuthority();
 
 
         //Generate the token
@@ -112,7 +112,7 @@ public class AuthController {
         //Create auth response object
         AuthResponse authResponse = new AuthResponse();
         authResponse.setJwt(jwt);
-        authResponse.setMessage("Successfully Registered");
+        authResponse.setMessage("Login Successful");
         authResponse.setRole(USER_ROLE.valueOf(role));
 
         return new ResponseEntity<>(authResponse, HttpStatus.OK);
