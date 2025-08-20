@@ -67,7 +67,7 @@ public class AppConfig {
 
     }
 
-    //Bcrypt the password and store in the database
+    //Bcrypt the password and store in the database.Any other can't see the password
     @Bean
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
