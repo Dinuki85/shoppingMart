@@ -1,5 +1,6 @@
 package com.online.controller;
 
+import com.online.dto.ShopsDto;
 import com.online.model.Shop;
 import com.online.model.User;
 import com.online.request.CreateShopRequest;
@@ -29,7 +30,7 @@ public class ShopController {
 
         List<Shop> shop = shopService.searchShop(keyword);
 
-        return new ResponseEntity<>(shop, HttpStatus.CREATED);
+        return new ResponseEntity<>(shop, HttpStatus.OK);
     }
 
 
@@ -40,7 +41,7 @@ public class ShopController {
 
         List<Shop> shop = shopService.getAllShops();
 
-        return new ResponseEntity<>(shop, HttpStatus.CREATED);
+        return new ResponseEntity<>(shop, HttpStatus.OK);
     }
 
     @GetMapping("/find/{id}")
@@ -51,6 +52,22 @@ public class ShopController {
 
         Shop shop = shopService.findShopBYId(id);
 
+        return new ResponseEntity<>(shop, HttpStatus.OK);
+    }
+
+    @PutMapping("/addFavourite/{id}")
+    public ResponseEntity<ShopsDto> addToFavourites(
+            @PathVariable Long id,
+            @RequestHeader("Authorization" ) String jwt) throws Exception {
+        User user =userService.findUserByJwtToken(jwt);
+
+        ShopsDto shop = shopService.addToFavourite(id,user);
+
+
+
         return new ResponseEntity<>(shop, HttpStatus.CREATED);
     }
+
+
+
 }
