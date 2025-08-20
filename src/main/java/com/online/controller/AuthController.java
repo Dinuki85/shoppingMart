@@ -60,7 +60,7 @@ public class AuthController {
         createUser.setEmail(user.getEmail());
         createUser.setFullName(user.getFullName());
         createUser.setRole(user.getRole());
-        createUser.setPassword(user.getPassword());
+        createUser.setPassword(passwordEncoder.encode(user.getPassword()));
 
         //To save the user
         User savedUser = userRepository.save(createUser);
