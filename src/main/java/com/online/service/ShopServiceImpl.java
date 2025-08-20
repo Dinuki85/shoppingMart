@@ -64,6 +64,15 @@ public class ShopServiceImpl  implements ShopService{
        if(shop.getName()!=null){
            shop.setName(updatedShop.getName());
        }
+        if(shop.getAddress()!=null){
+            shop.setAddress(updatedShop.getAddress());
+        }
+        if(shop.getContactInformation()!=null){
+            shop.setContactInformation(updatedShop.getContactInformation());
+        }
+        if(shop.getOpeningHours()!=null){
+            shop.setOpeningHours(updatedShop.getOpeningHours());
+        }
 
 
         return shopRepository.save(shop);
