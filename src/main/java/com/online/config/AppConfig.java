@@ -12,6 +12,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 //To enable the spring security
 //Write Spring security configuration
@@ -44,6 +45,8 @@ public class AppConfig {
               cfg.setAllowedOrigins(Arrays.asList(
                       "http://localhost:3000/"
               ));
+
+              cfg.setAllowedMethods(Collections.singletonList("*"));
 
                return null;
             }
