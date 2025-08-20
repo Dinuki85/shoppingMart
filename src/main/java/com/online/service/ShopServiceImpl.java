@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ShopServiceImpl  implements ShopService{
@@ -99,7 +100,13 @@ public class ShopServiceImpl  implements ShopService{
 
     @Override
     public Shop findShopBYId(Long id) throws Exception {
-        return null;
+        Optional<Shop> opt = shopRepository.findById(id);
+
+        if(opt.isEmpty()){
+            throw new Exception("Shop Not Found with id : "+id)
+        }
+
+        return opt.get();
     }
 
     @Override
