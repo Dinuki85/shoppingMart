@@ -52,11 +52,21 @@ public class AdminShopController {
     }
 
 
-    //Update Shop Status
+       //Update Shop Status
     @PutMapping("/update/status/{id}")
     public ResponseEntity<Shop> updateShopStatus(@RequestBody CreateShopRequest req, @RequestHeader("Authorization" ) String jwt,@PathVariable Long id) throws Exception {
         User user =userService.findUserByJwtToken(jwt);
-       Shop shop= shopService.updateShopStatus(id);
+        Shop shop= shopService.updateShopStatus(id);
+
+        return new ResponseEntity<>(shop, HttpStatus.OK);
+    }
+
+
+    //Find Shop By User id
+    @GetMapping("/find/shop/user/{id}")
+    public ResponseEntity<Shop> findShopByUserId(@RequestBody CreateShopRequest req, @RequestHeader("Authorization" ) String jwt) throws Exception {
+        User user =userService.findUserByJwtToken(jwt);
+        Shop shop= shopService.getShopByUserId(user.getId());
 
         return new ResponseEntity<>(shop, HttpStatus.OK);
     }
