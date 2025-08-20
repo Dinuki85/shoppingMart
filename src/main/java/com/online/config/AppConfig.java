@@ -33,7 +33,8 @@ public class AppConfig {
                 .csrf(csrf->csrf.disable())
                 .cors(cors->cors.configurationSource(corsConfigurationSource()));
 
-        return http.build();
+        return http.build()
+                ;
 
     }
 
