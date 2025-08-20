@@ -117,7 +117,7 @@ public class ShopServiceImpl  implements ShopService{
       Shop shop = shopRepository.findByOwnerId(userId);
 
       if(shop == null){
-          throw new Exception("Shop Not Foudn with owner id : "+userId);
+          throw new Exception("Shop Not Found with owner id : "+userId);
       }
 
         return shop;
