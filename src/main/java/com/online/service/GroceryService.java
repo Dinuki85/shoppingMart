@@ -11,7 +11,7 @@ public interface GroceryService {
 
     public Grocery createGrocery(CreateGroceryRequests req, Category category, Shop shop);
 
-    public void deleteFood(Long groceryId) throws Exception;
+    public void deleteGrocery(Long groceryId) throws Exception;
 
     public List<Grocery> getShopGrocery(Long shopId,boolean isVegetarian,boolean isNonVeg,boolean isSeasonal,String groceryCategory );
 

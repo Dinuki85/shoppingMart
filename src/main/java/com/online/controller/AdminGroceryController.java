@@ -4,6 +4,7 @@ import com.online.model.Grocery;
 import com.online.model.Shop;
 import com.online.model.User;
 import com.online.request.CreateGroceryRequests;
+import com.online.response.MessageResponse;
 import com.online.service.GroceryService;
 import com.online.service.ShopService;
 import com.online.service.UserService;
@@ -36,6 +37,23 @@ public class AdminGroceryController {
 
         Grocery grocery = groceryService.createGrocery(req,req.getCategory(),shop);
         return new ResponseEntity<>(grocery, HttpStatus.CREATED);
+
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<MessageResponse> deleteGrocery(@PathVariable Long id,
+                                                 @RequestHeader("Authorization") String jwt
+    ) throws Exception {
+
+        User user = userService.findUserByJwtToken(jwt);
+
+
+      groceryService.deleteGrocery(id);
+
+        MessageResponse res = new MessageResponse();
+        res.setMessage("Grocery Deleted Successfully");
+
+        return new ResponseEntity<>(res, HttpStatus.OK);
 
     }
 }
