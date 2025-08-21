@@ -43,6 +43,9 @@ public class GroceryServiceImpl implements GroceryService{
     @Override
     public void deleteFood(Long groceryId) throws Exception {
 
+        Grocery grocery = findGroceryById(groceryId);
+        grocery.setShop(null);
+        groceryRepository.save(grocery);
     }
 
     @Override
