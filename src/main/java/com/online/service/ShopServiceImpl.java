@@ -136,10 +136,22 @@ public class ShopServiceImpl  implements ShopService{
 
         dto.setId(shopId);
 
-        if(user.getFavorites().contains(dto)){
-            user.getFavorites().remove(dto);
+       boolean isFavourited = false;
+       List<ShopsDto> favorites = user.getFavorites();
+       for(ShopsDto favorite : favorites){
+           if(favorite.getId().equals(shopId)){
+               isFavourited = true;
+               break;
+           }
+       }
+
+       //If the SHop is already favourite ,remove it:otherwise,add it to favorites
+        if(isFavourited){
+            favorites.removeIf(favorite -> favorite.getId().equals(shopId));
+        }else {
+            favorites.add(dto);
         }
-        else user.getFavorites().add(dto);
+
 
         userRepository.save(user);
         return dto;
