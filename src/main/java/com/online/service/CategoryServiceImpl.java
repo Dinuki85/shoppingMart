@@ -21,7 +21,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Category createCategory(String name, Long userId) throws Exception {
 
-        Shop shop = shopService.findShopBYId(userId);
+        Shop shop = shopService.getShopByUserId(userId);
         Category category = new Category();
 
         category.setName(name);
@@ -34,7 +34,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> findCategoryByShopId(Long id) throws Exception {
-        return categoryRepository.findByShopId(id);
+        Shop shop = shopService.getShopByUserId(id);
+
+        return categoryRepository.findByShopId(shop.getId());
     }
 
     @Override
