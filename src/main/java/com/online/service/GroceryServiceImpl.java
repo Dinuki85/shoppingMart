@@ -8,6 +8,7 @@ import com.online.request.CreateGroceryRequests;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class GroceryServiceImpl implements GroceryService{
@@ -113,7 +114,12 @@ public class GroceryServiceImpl implements GroceryService{
 
     @Override
     public Grocery findGroceryById(Long groceryId) throws Exception {
-        return null;
+        Optional<Grocery> optionalGrocery = groceryRepository.findById(groceryId);
+
+        if(optionalGrocery.isEmpty()){
+            throw new Exception("This Grocery Item is not exists");
+        }
+        return optionalGrocery.get();
     }
 
     @Override
