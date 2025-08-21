@@ -68,7 +68,7 @@ public class AdminShopController {
 
 
     //Find Shop By User id
-    @GetMapping("/find/shop/user/{id}")
+    @GetMapping("/find/shop/user")
     public ResponseEntity<Shop> findShopByUserId(
             @RequestHeader("Authorization" ) String jwt) throws Exception {
         User user =userService.findUserByJwtToken(jwt);
