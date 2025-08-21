@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/category")
 public class CategoryController {
@@ -33,14 +35,14 @@ public class CategoryController {
 
     }
     @GetMapping("/shop")
-    public ResponseEntity<Category> getShopCategory(@RequestBody Category category,
-                                                   @RequestHeader("Authorization") String jwt ) throws Exception {
+    public ResponseEntity<List<Category>> getShopCategory(
+            @RequestHeader("Authorization") String jwt ) throws Exception {
 
         User user =userService.findUserByJwtToken(jwt);
 
-        Category createdCategory=categoryService.createCategory(category.getName(),user.getId());
+        List<Category> categories=categoryService.findCategoryByShopId(user.getId());
 
-        return new ResponseEntity<>(createdCategory, HttpStatus.CREATED);
+        return new ResponseEntity<>(categories, HttpStatus.OK);
 
 
     }
