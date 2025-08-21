@@ -34,7 +34,7 @@ public class GroceryController {
 
         User user = userService.findUserByJwtToken(jwt);
         List<Grocery> groceries = groceryService.searchGrocery(name);
-        return new ResponseEntity<>(groceries, HttpStatus.CREATED);
+        return new ResponseEntity<>(groceries, HttpStatus.OK);
 
     }
 
