@@ -107,7 +107,8 @@ public class GroceryServiceImpl implements GroceryService{
 
     @Override
     public List<Grocery> searchGrocery(String keyword) {
-        return List.of();
+
+        return groceryRepository.searchGrocery(keyword);
     }
 
     @Override
