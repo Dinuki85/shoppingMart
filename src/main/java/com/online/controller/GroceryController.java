@@ -28,7 +28,7 @@ public class GroceryController {
 
 
     @GetMapping("/search")
-    public ResponseEntity<List<Grocery> > createGrocery(@RequestParam String name,
+    public ResponseEntity<List<Grocery> > searchGrocery(@RequestParam String name,
                                                  @RequestHeader("Authorization") String jwt
     ) throws Exception {
 
@@ -37,5 +37,23 @@ public class GroceryController {
         return new ResponseEntity<>(groceries, HttpStatus.OK);
 
     }
+
+
+    @PostMapping("/shop/{shopId}")
+    public ResponseEntity<List<Grocery>> getShopGrocery(
+            @RequestParam boolean vegetarian,
+            @RequestParam boolean nonveg,
+            @RequestParam boolean sesonal,
+            @RequestParam(required = false) String grocery_category,
+            @PathVariable Long shopId,
+            @RequestHeader("Authorization") String jwt
+    ) throws Exception {
+
+        User user = userService.findUserByJwtToken(jwt);
+        List<Grocery> groceries = groceryService.getShopGrocery(shopId,vegetarian,nonveg,sesonal,grocery_category);
+        return new ResponseEntity<>(groceries, HttpStatus.OK);
+
+    }
+
 
 }
