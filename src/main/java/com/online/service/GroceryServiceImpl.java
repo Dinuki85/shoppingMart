@@ -124,6 +124,9 @@ public class GroceryServiceImpl implements GroceryService{
 
     @Override
     public Grocery updateAvailabilityStatus(Long groceryId) throws Exception {
-        return null;
+        Grocery grocery = findGroceryById(groceryId);
+        grocery.setAvailable(!grocery.isAvailable());
+
+        return groceryRepository.save(grocery);
     }
 }
