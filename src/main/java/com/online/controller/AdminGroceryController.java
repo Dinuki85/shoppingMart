@@ -46,14 +46,26 @@ public class AdminGroceryController {
     ) throws Exception {
 
         User user = userService.findUserByJwtToken(jwt);
-
-
-      groceryService.deleteGrocery(id);
+        groceryService.deleteGrocery(id);
 
         MessageResponse res = new MessageResponse();
-        res.setMessage("Grocery Deleted Successfully");
+        res.setMessage("Grocery Item Deleted Successfully");
 
         return new ResponseEntity<>(res, HttpStatus.OK);
-
     }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Grocery> updateGroceryAvailabilityStatus(@PathVariable Long id,
+                                                         @RequestHeader("Authorization") String jwt
+    ) throws Exception {
+
+        User user = userService.findUserByJwtToken(jwt);
+       Grocery grocery = groceryService.updateAvailabilityStatus(id);
+
+
+        return new ResponseEntity<>(grocery, HttpStatus.OK);
+    }
+
+
+
 }
