@@ -8,6 +8,7 @@ import com.online.request.CreateGroceryRequests;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GroceryServiceImpl implements GroceryService{
 
@@ -50,7 +51,58 @@ public class GroceryServiceImpl implements GroceryService{
 
     @Override
     public List<Grocery> getShopGrocery(Long shopId, boolean isVegetarian, boolean isNonVeg, boolean isSeasonal, String groceryCategory) {
-        return List.of();
+
+        List<Grocery> groceries = groceryRepository.findByShopId(shopId);
+
+        if(isVegetarian){
+            groceries=filteByVegetarian(groceries,isVegetarian);
+
+
+        }
+        if(isSeasonal){
+            groceries = filterBySeasonal(groceries,isSeasonal);
+
+        }
+
+        if(isNonVeg){
+            groceries=filterByNonVeg(groceries,isNonVeg);
+        }
+
+        if(groceryCategory!=null && !groceryCategory.equals("")){
+            groceries= filterBYCategory(groceries,groceryCategory);
+        }
+
+
+
+        return groceries;
+    }
+
+    private List<Grocery> filterBYCategory(List<Grocery> groceries, String groceryCategory) {
+
+        return groceries.stream().filter(grocery -> {
+            if(grocery.getGroceryCategory()!=null){
+                return grocery.getGroceryCategory().getName().equals(groceryCategory);
+            }
+            return false;
+        }).collect(Collectors.toList());
+
+    }
+
+    private List<Grocery> filterByNonVeg(List<Grocery> groceries, boolean isNonVeg) {
+        return groceries.stream().filter(grocery -> grocery.isVegetarian() == false).collect(Collectors.toList());
+
+
+    }
+
+    private List<Grocery> filterBySeasonal(List<Grocery> groceries, boolean isSeasonal) {
+
+        return groceries.stream().filter(grocery -> grocery.isSeasonal() == isSeasonal ).collect(Collectors.toList());
+
+    }
+
+    private List<Grocery> filteByVegetarian(List<Grocery> groceries, boolean isVegetarian) {
+    return groceries.stream().filter(grocery -> grocery.isVegetarian() == isVegetarian).collect(Collectors.toList());
+
     }
 
     @Override
