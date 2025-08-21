@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class categoryServiceImpl implements CategoryService {
+public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     private CategoryRepository categoryRepository;
@@ -33,7 +33,7 @@ public class categoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> findCategoryByShopId(Long id) throws Exception {
-        return List.of();
+        return categoryRepository.findByShopId(id);
     }
 
     @Override
