@@ -8,9 +8,11 @@ import com.online.repository.CartItemRepository;
 import com.online.repository.CartRepository;
 import com.online.request.AddCartItemRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class CartServiceImpl implements CartService{
 
     @Autowired
