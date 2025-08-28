@@ -72,7 +72,8 @@ public class WeightServiceImpl implements WeightService{
 
     @Override
     public List<WeightsItems> findShopsWeights(Long ShopId) {
-        return List.of();
+
+        return weightItemRepository.findByShopId(ShopId);
     }
 
     @Override
