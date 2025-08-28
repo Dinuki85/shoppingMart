@@ -6,7 +6,6 @@ import com.online.model.Grocery;
 import com.online.model.User;
 import com.online.repository.CartItemRepository;
 import com.online.repository.CartRepository;
-import com.online.repository.GroceryRepository;
 import com.online.request.AddCartItemRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 
