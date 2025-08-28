@@ -10,6 +10,8 @@ import com.online.repository.GroceryRepository;
 import com.online.request.AddCartItemRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Optional;
+
 public class CartServiceImpl implements CartService{
 
     @Autowired
@@ -59,14 +61,23 @@ public class CartServiceImpl implements CartService{
     @Override
     public CartItem updateCartItemQuantity(Long cartItemId, int quantity) throws Exception {
 
+        Optional<CartItem> cartItemOptional = cartItemRepository.findById(cartItemId);
+        if(cartItemOptional.isEmpty()){
+            throw new Exception("Cart Item Not Found");
+        }
+        CartItem item = cartItemOptional.get();
+        item.setQuantity(quantity);
 
 
+        item.setTotalPrice(item.getGrocery().getPrice()* quantity);
 
-        return null;
+        return cartItemRepository.save(item);
+
     }
 
     @Override
     public Cart removeItemFromCart(Long CartItemId, String jwt) throws Exception {
+
         return null;
     }
 
