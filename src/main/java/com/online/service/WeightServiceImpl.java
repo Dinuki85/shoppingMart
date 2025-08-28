@@ -55,7 +55,19 @@ public class WeightServiceImpl implements WeightService{
 
     @Override
     public WeightsItems createWeightItem(Long shopId, String weightName, Long categoryId) throws Exception {
-        return null;
+        Shop shop = shopService.findShopBYId(shopId);
+       WeightsCategory category = findWeightCategoryById(shopId);
+
+        WeightsItems item = new WeightsItems();
+        item.setName(weightName);
+        item.setShop(shop);
+        item.setCategory(category);
+
+        WeightsItems weight = weightItemRepository.save(item);
+
+        category.getWeights().add(weight);
+
+        return weight;
     }
 
     @Override
