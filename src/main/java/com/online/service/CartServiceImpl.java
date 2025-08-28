@@ -82,7 +82,7 @@ public class CartServiceImpl implements CartService{
 
         Cart cart = cartRepository.findByCustomerId(user.getId());
 
-        Optional<CartItem> cartItemOptional = cartItemRepository.findById(cartItemId);
+        Optional<CartItem> cartItemOptional = cartItemRepository.findById(CartItemId);
         if(cartItemOptional.isEmpty()){
             throw new Exception("Cart Item Not Found");
         }
