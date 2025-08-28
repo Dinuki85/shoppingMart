@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("admin/weights")
 public class WeightController {
@@ -38,6 +40,24 @@ public class WeightController {
         WeightsItems item = weightService.updateStock(id);
         return new ResponseEntity<>(item, HttpStatus.OK);
     }
+
+    @GetMapping("shop/{id}")
+    public ResponseEntity< List<WeightsItems>> getShopWeights(@PathVariable Long id
+    ) throws Exception {
+        List<WeightsItems> item = weightService.findShopsWeights(id);
+        return new ResponseEntity<>(item, HttpStatus.OK);
+    }
+
+    @GetMapping("shop/{id}/category")
+    public ResponseEntity< List<WeightsCategory>> getShopWeightCategory(
+            @PathVariable Long id
+    ) throws Exception {
+        List<WeightsCategory> items = weightService.findWeightCategoryByShopId(id);
+        return new ResponseEntity<>(items, HttpStatus.OK);
+    }
+
+
+
 
 
 }
