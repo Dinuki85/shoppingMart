@@ -39,11 +39,27 @@ public class CartServiceImpl implements CartService{
             }
         }
 
-        return null;
+        CartItem newCartItem = new CartItem();
+
+        newCartItem.setGrocery(grocery);
+        newCartItem.setCart(cart);
+        newCartItem.setQuantity(req.getQuantity());
+        newCartItem.setWeights(req.getWeights());
+        newCartItem.setTotalPrice(req.getQuantity()*grocery.getPrice());
+
+
+        CartItem saved = cartItemRepository.save(newCartItem);
+
+        cart.getItems().add(saved);
+
+
+        return saved;
     }
 
     @Override
     public CartItem updateCartItemQuantity(Long cartItemId, int quantity) throws Exception {
+
+
 
 
         return null;
