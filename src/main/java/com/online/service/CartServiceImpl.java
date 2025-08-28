@@ -96,7 +96,13 @@ public class CartServiceImpl implements CartService{
 
     @Override
     public Long calculateCartTotals(Cart cart) throws Exception {
-        return 0L;
+        Long total = 0L;
+
+        for(CartItem cartItem:cart.getItems()){
+            total+=cartItem.getTotalPrice()*cartItem.getQuantity();
+        }
+
+        return total;
     }
 
     @Override
