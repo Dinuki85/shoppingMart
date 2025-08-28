@@ -77,8 +77,17 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public Order updateOrder(Long orderId, String orderStatus) throws Exception {
 
+        Order order = findOrderById(orderId);
+        if(orderStatus.equals("OUT_FOR_DELIVERY") || orderStatus.equals("DELIVERY") || orderStatus.equals("COMPLETED") || orderStatus.equals("PENDING")){
+            order.setOrderStatus(orderStatus);
 
-        return null;
+            return orderRepository.save(order);
+
+        }
+
+        throw new Exception("Please select a valid order status");
+
+
     }
 
     @Override
