@@ -1,8 +1,10 @@
 package com.online.controller;
 
 import com.online.model.WeightsCategory;
+import com.online.model.WeightsItems;
 import com.online.repository.WeightItemRepository;
 import com.online.request.WeightCategoryRequest;
+import com.online.request.WeightRequest;
 import com.online.service.WeightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,5 +27,13 @@ public class WeightController {
         WeightsCategory item = weightService.createWeightCategory(req.getName(),req.getShopId());
          return new ResponseEntity<>(item, HttpStatus.CREATED);
     }
+
+    @PostMapping()
+    public ResponseEntity<WeightsItems> createWeightItem(@RequestBody WeightRequest req
+    ) throws Exception {
+        WeightsItems item = weightService.createWeightItem(req.getShopId(),req.getName(),req.getCategoryId());
+        return new ResponseEntity<>(item, HttpStatus.CREATED);
+    }
+
 
 }
