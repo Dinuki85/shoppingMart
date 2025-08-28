@@ -48,7 +48,9 @@ public class WeightServiceImpl implements WeightService{
 
     @Override
     public List<WeightsCategory> findWeightCategoryByShopId(Long id) throws Exception {
-        return List.of();
+
+        shopService.findShopBYId(id);
+        return weightCategoryRepository.findByShopId(id);
     }
 
     @Override
