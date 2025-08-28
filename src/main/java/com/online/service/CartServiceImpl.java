@@ -119,7 +119,7 @@ public class CartServiceImpl implements CartService{
 
     @Override
     public Cart findCartByUserId(Long userId) throws Exception {
-        return null;
+        return cartRepository.findByCustomerId(userId);
     }
 
     @Override
