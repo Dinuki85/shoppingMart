@@ -1,5 +1,6 @@
 package com.online.service;
 
+import com.online.model.Shop;
 import com.online.model.WeightsCategory;
 import com.online.model.WeightsItems;
 import com.online.repository.WeightCategoryRepository;
@@ -25,9 +26,13 @@ public class WeightServiceImpl implements WeightService{
     @Override
     public WeightsCategory createWeightCategory(String name, Long shopId) throws Exception {
 
+        Shop shop = shopService.findShopBYId(shopId);
 
+        WeightsCategory category=new WeightsCategory();
+        category.setShop(shop);
+        category.setName(name);
 
-        return null;
+        return weightCategoryRepository.save(category);
     }
 
     @Override
