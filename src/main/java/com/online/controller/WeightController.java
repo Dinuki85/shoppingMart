@@ -2,7 +2,7 @@ package com.online.controller;
 
 import com.online.model.WeightsCategory;
 import com.online.model.WeightsItems;
-import com.online.repository.WeightItemRepository;
+
 import com.online.request.WeightCategoryRequest;
 import com.online.request.WeightRequest;
 import com.online.service.WeightService;
