@@ -5,4 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface WeightItemRepository extends JpaRepository<WeightsItems ,Long> {
 
+
+
+
+
+
 }
