@@ -1,5 +1,6 @@
 package com.online.controller;
 
+import com.online.model.Cart;
 import com.online.model.CartItem;
 import com.online.request.AddCartItemRequest;
 import com.online.request.UpdateCartItemRequest;
@@ -27,5 +28,13 @@ public class CartController {
            @RequestHeader("Authorization") String jwt) throws Exception{
         CartItem cartItem = cartService.updateCartItemQuantity(req.getCartItemId(),req.getQuantity());
         return  new ResponseEntity<>(cartItem, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/cartItem/{id}/remove")
+    public ResponseEntity<Cart> removeCartItem(
+            @PathVariable Long id,
+            @RequestHeader("Authorization") String jwt) throws Exception{
+        Cart cart = cartService.removeItemFromCart(id,jwt);
+        return  new ResponseEntity<>(cart, HttpStatus.OK);
     }
 }
