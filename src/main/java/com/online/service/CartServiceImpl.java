@@ -78,7 +78,20 @@ public class CartServiceImpl implements CartService{
     @Override
     public Cart removeItemFromCart(Long CartItemId, String jwt) throws Exception {
 
-        return null;
+        User user = userService.findUserByJwtToken(jwt);
+
+        Cart cart = cartRepository.findByCustomerId(user.getId());
+
+        Optional<CartItem> cartItemOptional = cartItemRepository.findById(cartItemId);
+        if(cartItemOptional.isEmpty()){
+            throw new Exception("Cart Item Not Found");
+        }
+
+        CartItem cartItem = cartItemOptional.get();
+
+        cart.getItems().remove(cartItem);
+
+        return cartRepository.save(cart);
     }
 
     @Override
