@@ -13,11 +13,11 @@ public interface GroceryService {
 
     public void deleteGrocery(Long groceryId) throws Exception;
 
-    public List<Grocery> getShopGrocery(Long shopId,boolean isVegetarian,boolean isNonVeg,boolean isSeasonal,String groceryCategory );
+    public List<Grocery> getShopGrocery(Long shopId, boolean isVegetarian, boolean isNonVeg, boolean isSeasonal, String groceryCategory);
 
-    public List<Grocery>searchGrocery(String keyword);
+    public List<Grocery> searchGrocery(String keyword);
 
-    public Grocery findGroceryById(Long groceryId)throws Exception;
+    public Grocery findGroceryById(Long groceryId) throws Exception;
 
     public Grocery updateAvailabilityStatus(Long groceryId) throws Exception;
 

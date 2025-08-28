@@ -6,11 +6,14 @@ import com.online.model.Shop;
 import com.online.repository.GroceryRepository;
 import com.online.request.CreateGroceryRequests;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+
+@Service
 public class GroceryServiceImpl implements GroceryService{
 
     @Autowired
@@ -56,7 +59,7 @@ public class GroceryServiceImpl implements GroceryService{
         List<Grocery> groceries = groceryRepository.findByShopId(shopId);
 
         if(isVegetarian){
-            groceries=filteByVegetarian(groceries,isVegetarian);
+            groceries=filterByVegetarian(groceries,isVegetarian);
 
 
         }
@@ -101,7 +104,7 @@ public class GroceryServiceImpl implements GroceryService{
 
     }
 
-    private List<Grocery> filteByVegetarian(List<Grocery> groceries, boolean isVegetarian) {
+    private List<Grocery> filterByVegetarian(List<Grocery> groceries, boolean isVegetarian) {
     return groceries.stream().filter(grocery -> grocery.isVegetarian() == isVegetarian).collect(Collectors.toList());
 
     }

@@ -12,6 +12,6 @@ public interface GroceryRepository extends JpaRepository<Grocery,Long> {
     List<Grocery> findByShopId(Long shopId);
 
 
-    @Query("SELECT g FROM Grocery g WHERE f.name LIKE %:keyword:% OR f.groceryCategory.name LIKE %:keyword ")
+    @Query("SELECT g FROM Grocery g WHERE g.name LIKE %?1% OR g.groceryCategory.name LIKE %?1% ")
     List<Grocery> searchGrocery(@Param("keyword" ) String keyword);
 }
