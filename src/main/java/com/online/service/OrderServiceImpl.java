@@ -76,11 +76,16 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public Order updateOrder(Long orderId, String orderStatus) throws Exception {
+
+
         return null;
     }
 
     @Override
     public void cancelOrder(Long orderId) throws Exception {
+
+        Order order = findOrderById(orderId);
+        orderRepository.deleteById(orderId);
 
     }
 
@@ -92,5 +97,10 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public List<Order> getShopsOrder(Long shopId, String orderStatus) throws Exception {
         return List.of();
+    }
+
+    @Override
+    public Order findOrderById(Long orderId) throws Exception {
+        return null;
     }
 }
