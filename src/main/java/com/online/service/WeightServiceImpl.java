@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class WeightServiceImpl implements WeightService{
@@ -37,7 +38,12 @@ public class WeightServiceImpl implements WeightService{
 
     @Override
     public WeightsCategory findWeightCategoryById(Long id) throws Exception {
-        return null;
+       Optional<WeightsCategory> opt = weightCategoryRepository.findById(id);
+
+       if(opt.isEmpty()){
+           throw new Exception("Weight category Not Found");
+       }
+        return opt.get();
     }
 
     @Override
