@@ -78,6 +78,13 @@ public class WeightServiceImpl implements WeightService{
 
     @Override
     public WeightsItems updateStock(Long id) throws Exception {
-        return null;
+      Optional<WeightsItems> optionalWeightsItems= weightItemRepository.findById(id);
+
+      if(optionalWeightsItems.isEmpty()){
+          throw new Exception("Weight not found");
+      }
+      WeightsItems weightsItems = optionalWeightsItems.get();
+      weightsItems.setStock(!weightsItems.isStock());
+        return weightItemRepository.save(weightsItems);
     }
 }
