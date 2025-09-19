@@ -1,6 +1,7 @@
-import { IconButton } from '@mui/material'
+import { Avatar, IconButton } from '@mui/material'
 import React from 'react'
 import SearchIcon from '@mui/icons-material/Search';
+import { red } from '@mui/material/colors';
 
 
 const Navbar = () => {
@@ -9,7 +10,7 @@ const Navbar = () => {
             
                 <div className='flex items-center space-x-5 cursor-pointer lg:mr-10'>
                     <li className='font-serif text-2xl font-extrabold logo text-green-950'>
-                        Shopping Mart
+                        Grocery Shop
                     </li>
                 
 
@@ -23,7 +24,8 @@ const Navbar = () => {
                     </IconButton>
                     
                 </div>
-                <div>
+                <div className=''>
+                    <Avatar sx={{bgcolor:"black",color:red.A200}}>D</Avatar>
                     
                 </div>
 
