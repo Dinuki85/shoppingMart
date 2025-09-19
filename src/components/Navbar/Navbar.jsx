@@ -1,5 +1,6 @@
 import { IconButton } from '@mui/material'
 import React from 'react'
+import SearchIcon from '@material-ui/icons/Search';
 
 const Navbar = () => {
     return (
@@ -17,7 +18,7 @@ const Navbar = () => {
             <div className='flex items-center space-x-2 lg:space-x-10'>
                 <div className=''>
                     <IconButton>
-                        
+                        <SearchIcon/>
                     </IconButton>
                     
                 </div>
