@@ -2,7 +2,7 @@ import { Avatar, IconButton } from '@mui/material'
 import React from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import { red } from '@mui/material/colors';
-
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 const Navbar = () => {
     return (
@@ -26,6 +26,13 @@ const Navbar = () => {
                 </div>
                 <div className=''>
                     <Avatar sx={{bgcolor:"black",color:red.A200}}>D</Avatar>
+                    
+                </div>
+
+                 <div className=''>
+                    <IconButton >
+                        <AddShoppingCartIcon sx={{fontSize:"1.5rem"}} />
+                    </IconButton>
                     
                 </div>
 
