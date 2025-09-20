@@ -1,4 +1,4 @@
-import { Avatar, IconButton } from '@mui/material'
+import { Avatar, Badge, IconButton } from '@mui/material'
 import React from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import { red } from '@mui/material/colors';
@@ -31,8 +31,12 @@ const Navbar = () => {
 
                  <div className=''>
                     <IconButton >
-                        <AddShoppingCartIcon sx={{fontSize:"1.5rem"}} />
+                        <Badge color="primary" badgeContent={1}>
+                            <AddShoppingCartIcon sx={{fontSize:"1.5rem"}} />
+                   </Badge>
                     </IconButton>
+                       
+                        
                     
                 </div>
 
