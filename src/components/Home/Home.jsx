@@ -1,8 +1,10 @@
 import React from 'react'
 import "./Home.css"
 import MultiItemCarousel from './MultiItemCarousel'
+import ShopCard from '../Shop/ShopCard'
+const shop=[1,1,1,1,1,1,1,1,1,1]
 const Home = () => {
-const shop=[1,1,1,1]
+
   return (
     <div className=''>
       <section className='relative flex flex-col justify-center banner -z-50 item-center'>
@@ -23,7 +25,9 @@ const shop=[1,1,1,1]
       <section classname='px-5 lg:px-20'>
         <h1 clasName='text-2xl font-semibold text-gray-400 py-3'>Shopping with Handpicked Favorites</h1>
         <div>
-          
+          {
+            shop.map((item)=><ShopCard/>)
+          }
           
         </div>
       </section>
