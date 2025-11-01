@@ -2,7 +2,7 @@ import React from 'react'
 import "./Home.css"
 import MultiItemCarousel from './MultiItemCarousel'
 const Home = () => {
-  
+const shop=[1,1,1,1]
   return (
     <div className=''>
       <section className='relative flex flex-col justify-center banner -z-50 item-center'>
