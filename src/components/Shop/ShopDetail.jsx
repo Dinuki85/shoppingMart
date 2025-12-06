@@ -1,7 +1,20 @@
-import { Divider, Grid } from '@mui/material'
+import { Divider, FormControl, FormControlLabel, Grid, Radio, RadioGroup, Typography } from '@mui/material'
 import React from 'react'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+
+const categories = [
+    "pizza",
+    "chicken",
+    "Milk",
+    "Rice"
+]
+
+const foodTypes = [
+    { label: "All", value: "All" },
+    { label: "Non Vegetarian", value: "Non Veg" },
+    { label: "Vegetarian Only", value: "Veg" }
+]
 const ShopDetail = () => {
     return (
         <div className='px-5 lg:px-20'>
@@ -24,7 +37,7 @@ const ShopDetail = () => {
                 </div>
                 <div className="pt-3 pb-50">
                     <h1 className='text-4xl font-semibold'>Sri Lanka Best Grocesry Items</h1>
-                   <p className='mt-1 text-gray-500'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolores laborum voluptas quibusdam laboriosam repudiandae aliquid sed fugit laudantium commodi reprehenderit! Libero cum asperiores velit optio minima dicta, assumenda temporibus voluptate?</p>
+                    <p className='mt-1 text-gray-500'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolores laborum voluptas quibusdam laboriosam repudiandae aliquid sed fugit laudantium commodi reprehenderit! Libero cum asperiores velit optio minima dicta, assumenda temporibus voluptate?</p>
                     <div className='mt-3 space-y-3'>
                         <p className='flex items-center gap-3 text-gray-500'>
                             <LocationOnIcon />
@@ -44,14 +57,30 @@ const ShopDetail = () => {
 
                 </div>
             </section>
-            <Divider/>
+            <Divider />
             <section className='pt-[2rem] lg:flex relative'>
                 <div className='space-y-10 lg:w-[20%] filter'>
-                    
+                    <div className="space-y-5 box lg:sticky top-28 ">
+                        <div>
+                            <p>
+                                <Typography variant="h5" sx={{ paddingBottom: "1rem" }}>
+                                    Grocery Type
+                                </Typography>
+                            </p>
+                            <FormControl className='py-10 space-y-5' component={"fieldset"}>
+                                <RadioGroup>
+                                    {foodTypes.map((item) => <FormControlLabel value={item.value} control={<Radio/>}
+                                     label={item.label}/>)}
+
+                                </RadioGroup>
+                            </FormControl>
+
+                        </div>
+                    </div>
                 </div>
 
                 <div className='space-y-5 lg:w-[80%] lg:pl-10 '>
-                    
+
                 </div>
             </section>
         </div>
