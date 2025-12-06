@@ -21,7 +21,7 @@ const ShopCard = () => {
         </div>
         <div className='justify-between w-full p-4 textPart lg:flex'>
             <p className='text-lg font-semibold'>Sri Lankan Grocery Shops</p>
-            <p className='text-sm text-gray-500'>Dive into your favourite......</p>
+            <p className='text-sm text-gray-500'>Dive into your favourite Grocery items from ........</p>
             
         </div>
 
