@@ -2,7 +2,7 @@ import React from 'react'
 import "./Home.css"
 import MultiItemCarousel from './MultiItemCarousel'
 import ShopCard from '../Shop/ShopCard'
-const shop=[1,1,1,1,1,1,1,1,1,1]
+const shop=[1,1,1,1,1,1,1,1,1,1] //Take the dummy array
 const Home = () => {
 
   return (
