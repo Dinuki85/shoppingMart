@@ -18,13 +18,13 @@ const Home = () => {
         <div className='fadout'></div>
       </section>
 
-      <secttion className='p-10 lg:py-10 lg:px-20'>
+      <section className='p-10 lg:py-10 lg:px-20'>
         <p className='py-3 pb-10 text-2xl font-semibold text-gray-400'>Top Grocery Items</p>
         <MultiItemCarousel/>
-      </secttion>
-      <section classname='px-5 lg:px-20'>
-        <h1 clasName='text-2xl font-semibold text-gray-400 py-3'>Shopping with Handpicked Favorites</h1>
-        <div>
+      </section>
+      <section classname='px-5 pt-10 lg:px-20'>
+        <h1 clasName='text-2xl font-semibold text-gray-400 pb-8'>Shopping with Handpicked Favorites</h1>
+        <div className='flex flex-wrap items-center justify-around gap-5'>
           {
             shop.map((item)=><ShopCard/>)
           }
