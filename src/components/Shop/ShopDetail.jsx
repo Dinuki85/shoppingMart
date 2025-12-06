@@ -24,20 +24,24 @@ const ShopDetail = () => {
                 </div>
                 <div className="pt-3 pb-50">
                     <h1 className='text-4xl font-semibold'>Sri Lanka Best Grocesry Items</h1>
-                    <p className='flex items-center gap-3 text-gray-500'>
-                        <LocationOnIcon />
-                        <span>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ad ratione illum omnis eligendi in? Repudiandae molestias provident quisquam quae repellendus quasi error temporibus, nihil libero, culpa est distinctio neque!
-                        </span>
-                    </p>
-                    <p className='flex items-center gap-3 text-gray-500'>
+                   <p className='mt-1 text-gray-500'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolores laborum voluptas quibusdam laboriosam repudiandae aliquid sed fugit laudantium commodi reprehenderit! Libero cum asperiores velit optio minima dicta, assumenda temporibus voluptate?</p>
+                    <div className='mt-3 space-y-3'>
+                        <p className='flex items-center gap-3 text-gray-500'>
+                            <LocationOnIcon />
+                            <span>
+                                Sri Lanka,Colombo                        </span>
+                        </p>
+                        <p className='flex items-center gap-3 text-gray-500'>
 
-                        <CalendarTodayIcon />
+                            <CalendarTodayIcon />
 
-                        <span>
-                            Mon-Fri: 9am-5pm                        </span>
+                            <span>
+                                Mon-Fri: 9am-5pm                        </span>
 
-                    </p>
+                        </p>
+
+                    </div>
+
                 </div>
             </section>
         </div>
