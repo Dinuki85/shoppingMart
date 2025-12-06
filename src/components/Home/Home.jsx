@@ -6,7 +6,7 @@ const shop=[1,1,1,1,1,1,1,1,1,1] //Take the dummy array
 const Home = () => {
 
   return (
-    <div className=''>
+    <div className='pb-10'>
       <section className='relative flex flex-col justify-center banner -z-50 item-center'>
         <div className='w-[50w] z-10 text-center'>
           <p className='z-10 py-5 text-2xl lg:text-6xl fond-bold' >Grocery Items</p>
