@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material'
+import { Divider, Grid } from '@mui/material'
 import React from 'react'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
@@ -42,6 +42,16 @@ const ShopDetail = () => {
 
                     </div>
 
+                </div>
+            </section>
+            <Divider/>
+            <section className='pt-[2rem] lg:flex relative'>
+                <div className='space-y-10 lg:w-[20%] filter'>
+                    
+                </div>
+
+                <div className='space-y-5 lg:w-[80%] lg:pl-10 '>
+                    
                 </div>
             </section>
         </div>
