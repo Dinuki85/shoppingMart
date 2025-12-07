@@ -1,5 +1,5 @@
 import { Divider, FormControl, FormControlLabel, Grid, Radio, RadioGroup, Typography } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 
@@ -16,6 +16,10 @@ const foodTypes = [
     { label: "Vegetarian Only", value: "Veg" }
 ]
 const ShopDetail = () => {
+    const [foodType,setFoodType] = useState("all")
+    const handleFilter=(e) =>{
+        console.log(e.target.value,e.target.name)
+    }
     return (
         <div className='px-5 lg:px-20'>
             <section>
@@ -68,9 +72,32 @@ const ShopDetail = () => {
                                 </Typography>
                             </p>
                             <FormControl className='py-10 space-y-5' component={"fieldset"}>
-                                <RadioGroup>
-                                    {foodTypes.map((item) => <FormControlLabel value={item.value} control={<Radio />}
-                                        label={item.label} />)}
+                                <RadioGroup onChangr={handleFilter} name = "grocery_type" value = {foodType }>
+                                    {foodTypes.map((item) => 
+                                    <FormControlLabel
+                                    key={item.value}
+                                     value={item.value}
+                                     control={<Radio />}
+                                     label={item.label} />)}
+
+                                </RadioGroup>
+                            </FormControl>
+
+                        </div>
+                        <div>
+                            <p>
+                                <Typography variant="h5" sx={{ paddingBottom: "1rem" }}>
+                                    Grocery Category
+                                </Typography>
+                            </p>
+                            <FormControl className='py-10 space-y-5' component={"fieldset"}>
+                                <RadioGroup onChangr={handleFilter} name = "grocery_type" value = {foodType }>
+                                    {categories.map((item) => 
+                                    <FormControlLabel
+                                    key={item}
+                                     value={item}
+                                     control={<Radio />}
+                                     label={item} />)}
 
                                 </RadioGroup>
                             </FormControl>
