@@ -22,6 +22,9 @@ const demo = [
 ]
 
 const MenuCard = () => {
+    const handleCheckBoxChange= () => {
+        console.log("value")
+    }
     return (
         <Accordion>
             <AccordionSummary
@@ -47,7 +50,7 @@ const MenuCard = () => {
             </AccordionSummary>
             <AccordionDetails>
                 <form>
-                    <div className='flex-wrap'>
+                    <div className='flex flex-wrap gap-5 '>
                         {
                             demo.map((item) =>
                                 <div>
@@ -55,7 +58,7 @@ const MenuCard = () => {
 
                                     <FormGroup>
                                         {item.ingrediants.map((item) => <FormControlLabel
-                                            control={<Checkbox  />}
+                                            control={<Checkbox onChange={()=>handleCheckBoxChange(item)} />}
                                             label={item} />)}
 
                                     </FormGroup>
@@ -64,7 +67,7 @@ const MenuCard = () => {
 
                         }
                     </div>
-                    <div>
+                    <div className="pt-5">
                         <Button variant="contained"  disables={false} type="submit">{true? "Add to cart":"Out of stock"} </Button>
                     </div>
                         
