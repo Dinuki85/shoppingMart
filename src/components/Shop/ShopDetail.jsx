@@ -16,9 +16,9 @@ const foodTypes = [
     { label: "Vegetarian Only", value: "Veg" }
 ]
 const ShopDetail = () => {
-    const [foodType,setFoodType] = useState("all")
-    const handleFilter=(e) =>{
-        console.log(e.target.value,e.target.name)
+    const [foodType, setFoodType] = useState("all")
+    const handleFilter = (e) => {
+        console.log(e.target.value, e.target.name)
     }
     return (
         <div className='px-5 lg:px-20'>
@@ -63,8 +63,8 @@ const ShopDetail = () => {
             </section>
             <Divider />
             <section className='pt-[2rem] lg:flex relative'>
-                <div className='space-y-10 lg:w-[20%] filter'>
-                    <div className="space-y-5 box lg:sticky top-28 ">
+                <div className='space-y-10 lg:w-[20%] filter  '>
+                    <div className="space-y-5 d box lg:sticky top-28">
                         <div>
                             <p>
                                 <Typography variant="h5" sx={{ paddingBottom: "1rem" }}>
@@ -72,18 +72,19 @@ const ShopDetail = () => {
                                 </Typography>
                             </p>
                             <FormControl className='py-10 space-y-5' component={"fieldset"}>
-                                <RadioGroup onChangr={handleFilter} name = "grocery_type" value = {foodType }>
-                                    {foodTypes.map((item) => 
-                                    <FormControlLabel
-                                    key={item.value}
-                                     value={item.value}
-                                     control={<Radio />}
-                                     label={item.label} />)}
+                                <RadioGroup onChangr={handleFilter} name="grocery_type" value={foodType}>
+                                    {foodTypes.map((item) =>
+                                        <FormControlLabel
+                                            key={item.value}
+                                            value={item.value}
+                                            control={<Radio />}
+                                            label={item.label} />)}
 
                                 </RadioGroup>
                             </FormControl>
 
                         </div>
+                        <Divider />
                         <div>
                             <p>
                                 <Typography variant="h5" sx={{ paddingBottom: "1rem" }}>
@@ -91,13 +92,13 @@ const ShopDetail = () => {
                                 </Typography>
                             </p>
                             <FormControl className='py-10 space-y-5' component={"fieldset"}>
-                                <RadioGroup onChangr={handleFilter} name = "grocery_type" value = {foodType }>
-                                    {categories.map((item) => 
-                                    <FormControlLabel
-                                    key={item}
-                                     value={item}
-                                     control={<Radio />}
-                                     label={item} />)}
+                                <RadioGroup onChangr={handleFilter} name="grocery_type" value={foodType}>
+                                    {categories.map((item) =>
+                                        <FormControlLabel
+                                            key={item}
+                                            value={item}
+                                            control={<Radio />}
+                                            label={item} />)}
 
                                 </RadioGroup>
                             </FormControl>
