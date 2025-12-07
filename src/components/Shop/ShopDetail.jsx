@@ -69,8 +69,8 @@ const ShopDetail = () => {
                             </p>
                             <FormControl className='py-10 space-y-5' component={"fieldset"}>
                                 <RadioGroup>
-                                    {foodTypes.map((item) => <FormControlLabel value={item.value} control={<Radio/>}
-                                     label={item.label}/>)}
+                                    {foodTypes.map((item) => <FormControlLabel value={item.value} control={<Radio />}
+                                        label={item.label} />)}
 
                                 </RadioGroup>
                             </FormControl>
