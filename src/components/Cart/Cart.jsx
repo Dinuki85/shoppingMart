@@ -38,6 +38,10 @@ const Cart = () => {
                        
               </div>
             </section>
+            <Divider orientation="vertical" flexItem/>
+            <section className="lg:w-[70%] flex justify-center px-5 pb-10 lg:pb-0">
+                
+            </section>
                 
                 
 
