@@ -1,5 +1,7 @@
-import { Accordion, AccordionSummary } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material'
 import React from 'react'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 
 const MenuCard = () => {
   return (
