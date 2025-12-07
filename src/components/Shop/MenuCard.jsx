@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, AccordionSummary, Checkbox, FormControlLabel, FormGroup, Typography } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary, Button, Checkbox, FormControlLabel, FormGroup, Typography } from '@mui/material'
 import React from 'react'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
@@ -64,6 +64,10 @@ const MenuCard = () => {
 
                         }
                     </div>
+                    <div>
+                        <Button variant="contained"  disables={false} type="submit">{true? "Add to cart":"Out of stock"} </Button>
+                    </div>
+                        
                 </form>
             </AccordionDetails>
         </Accordion>
