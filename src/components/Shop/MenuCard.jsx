@@ -52,17 +52,17 @@ const MenuCard = () => {
                             demo.map((item) =>
                                 <div>
                                     <p>{item.category}</p>
-                                    
+
                                     <FormGroup>
-                                    {item.ingrediants.map((item)=><FormControlLabel 
-                                    control={<Checkbox defaultChecked />} 
-                                    label={item} />)}
-                                    
-                                </FormGroup>
+                                        {item.ingrediants.map((item) => <FormControlLabel
+                                            control={<Checkbox  />}
+                                            label={item} />)}
+
+                                    </FormGroup>
                                 </div>
-                                )
-                    
-                }
+                            )
+
+                        }
                     </div>
                 </form>
             </AccordionDetails>
