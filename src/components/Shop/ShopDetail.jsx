@@ -2,6 +2,7 @@ import { Divider, FormControl, FormControlLabel, Grid, Radio, RadioGroup, Typogr
 import React, { useState } from 'react'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import MenuCard from './MenuCard';
 
 const categories = [
     "pizza",
@@ -14,7 +15,8 @@ const foodTypes = [
     { label: "All", value: "All" },
     { label: "Non Vegetarian", value: "Non Veg" },
     { label: "Vegetarian Only", value: "Veg" }
-]
+];
+const menu =[1,1,1,1,1,1]
 const ShopDetail = () => {
     const [foodType, setFoodType] = useState("all")
     const handleFilter = (e) => {
@@ -108,7 +110,7 @@ const ShopDetail = () => {
                 </div>
 
                 <div className='space-y-5 lg:w-[80%] lg:pl-10 '>
-
+                  {menu.map((item)=><MenuCard/>)}                      
                 </div>
             </section>
         </div>
