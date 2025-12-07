@@ -5,11 +5,11 @@ import { AddressCard } from './AddressCard'
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 const items = [1, 1,]
 const Cart = () => {
-    const createOrderUsingSelectedAddress=()=>{
-        
+    const createOrderUsingSelectedAddress = () => {
+
     }
-    const handleOpenAddressModal=()=>{
-        
+    const handleOpenAddressModal = () => {
+
     }
     return (
         <div>
@@ -52,18 +52,18 @@ const Cart = () => {
                         <div className='flex flex-wrap justify-center gap-5'>
                             {[1, 1, 1,].map((item) => <AddressCard handleSelectAddress={createOrderUsingSelectedAddress} item={item} showButton={true} />)}
 
-                              <Card className="flex w-64 gap-5 p-5">
-                                        <AddLocationAltIcon />
-                                        <div className="space-y-3 text-gray-500">
-                                            <h1 className="text-lg font-semibold text-white">Add New Address</h1>
+                            <Card className="flex w-64 gap-5 p-5">
+                                <AddLocationAltIcon />
+                                <div className="space-y-3 text-gray-500">
+                                    <h1 className="text-lg font-semibold text-white">Add New Address</h1>
 
-                                            
-                                            <p>Sri Lanka,Colombo</p>
-                                            
-                                                <Button variant="outlined" fullWidth onClick={handleOpenAddressModal}>Add</Button>
-                                            
-                                        </div>
-                                    </Card>
+
+                                    <p>Sri Lanka,Colombo</p>
+
+                                    <Button variant="outlined" fullWidth onClick={handleOpenAddressModal}>Add</Button>
+
+                                </div>
+                            </Card>
                         </div>
 
 

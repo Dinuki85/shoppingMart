@@ -3,8 +3,8 @@ import React from 'react'
 import HomeIcon from '@mui/icons-material/Home';
 import { Button, Card } from '@mui/material';
 
-export const AddressCard = ({item, showButton,handleSelectAddress}) => {
-    
+export const AddressCard = ({ item, showButton, handleSelectAddress }) => {
+
     return (
         <Card className="flex w-64 gap-5 p-5">
             <HomeIcon />

@@ -29,11 +29,11 @@ export const CartItem = () => {
                     </div>
                     <p>Rs.125.00</p>
                 </div>
-                
+
 
             </div>
             <div className="pt-3 space-x-2">
-                {[1,1,1,].map((item)=><Chip label={"rice"}/>)}
+                {[1, 1, 1,].map((item) => <Chip label={"rice"} />)}
             </div>
 
         </div>
