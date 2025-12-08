@@ -127,7 +127,7 @@ const Cart = () => {
                        // validationSchema={validationSchema}
                         onSubmit={handleSubmit}
                     >
-                        <Grid containet spacing={2}>
+                        <Grid className="contained" spacing={2}>
                             <Grid item xs={12}>
                                 <Field
                                 as={TextField}
@@ -147,6 +147,63 @@ const Cart = () => {
                                 
                                     
                                 
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Field
+                                as={TextField}
+                                name="state"
+                                label="State"
+                                fullWidth
+                                variant="outlined"
+                              //  error={!ErrorMessage("state")}
+                              //  helperText={
+                              //      <ErrorMessage>
+                              //          {(msg)=><span className='text-red-600'>{msg}</span>}
+                              //      </ErrorMessage>
+                                        
+                              // } 
+                              />
+                              
+                            </Grid>  
+                            <Grid item xs={12}>
+                                <Field
+                                as={TextField}
+                                name="City"
+                                label="City"
+                                fullWidth
+                                variant="outlined"
+                              //  error={!ErrorMessage("City")}
+                              //  helperText={
+                              //      <ErrorMessage>
+                              //          {(msg)=><span className='text-red-600'>{msg}</span>}
+                              //      </ErrorMessage>
+                                        
+                              // } 
+                              />
+ 
+                            </Grid>
+                                
+                               <Grid item xs={12}>
+                                <Field
+                                as={TextField}
+                                name="PinCode"
+                                label="Pin Code"
+                                fullWidth
+                                variant="outlined"
+                              //  error={!ErrorMessage("PinCode")}
+                              //  helperText={
+                              //      <ErrorMessage>
+                              //          {(msg)=><span className='text-red-600'>{msg}</span>}
+                              //      </ErrorMessage>
+                                        
+                              // } 
+                              />
+                                   
+                                    
+                                
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Button fullWidth variant="contained" type="submit" color="primary" >Confirm the Delivery</Button>
                             </Grid>
                         </Grid>
 
