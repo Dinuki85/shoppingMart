@@ -1,10 +1,11 @@
-import { Box, Button, Card, Divider, Modal } from '@mui/material'
+import { Box, Button, Card, Divider, Grid, Modal, TextField } from '@mui/material'
 import React from 'react'
 import { CartItem } from './CartItem'
 import { AddressCard } from './AddressCard'
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
-import { Formik } from 'formik';
-import * as Yup from "yup"
+import {  Field, Formik } from 'formik';
+import * as Yup from "yup";
+
 const items = [1, 1,]
 
 const style = {
@@ -27,15 +28,15 @@ const initialValues = {
 
 }
 
-const validationSchema = Yup.object.shape({
-    streedAddress: Yup.string().required("Street address is required"),
-    state: Yup.string().required("State  is required"),
-    pincode: Yup.required("Pin code is required"),
-    city: Yup.string().required("city is required")
+//{const validationSchema = Yup.object.shape({
+  //  streedAddress: Yup.string().required("Street address is required"),
+    //state: Yup.string().required("State  is required"),
+    //pincode: Yup.required("Pin code is required"),
+    //city: Yup.string().required("city is required")
 
 
 
-})
+//})}
 
 
 
@@ -123,9 +124,31 @@ const Cart = () => {
             >
                 <Box sx={style}>
                     <Formik initialValues={initialValues}
-                        validationSchema={validationSchema}
+                       // validationSchema={validationSchema}
                         onSubmit={handleSubmit}
                     >
+                        <Grid containet spacing={2}>
+                            <Grid item xs={12}>
+                                <Field
+                                as={TextField}
+                                name="StreedAddress"
+                                label="Street Address"
+                                fullWidth
+                                variant="outlined"
+                              //  error={!ErrorMessage("StreetAddress")}
+                              //  helperText={
+                              //      <ErrorMessage>
+                              //          {(msg)=><span className='text-red-600'>{msg}</span>}
+                              //      </ErrorMessage>
+                                        
+                              // } 
+                              />
+                                
+                                
+                                    
+                                
+                            </Grid>
+                        </Grid>
 
                     </Formik>
                 </Box>
