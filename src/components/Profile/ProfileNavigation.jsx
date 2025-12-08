@@ -18,17 +18,17 @@ const menu = [
     { title: "Log Out", icon: <ExitToAppIcon /> }
 ]
 export const ProfileNavigation = ({ open, handleClose }) => {
-    const isSmallScreen = useMediaQuery("(max-width:1080)")
+    const isSmallScreen = useMediaQuery('(max-width:900px)');
 
     return (
         <div>
             <Drawer variant={isSmallScreen ? "temporary" : "permanent"} 
             onClose={handleClose}
-            open={open} 
+            open={true} 
             anchor='left' 
             sx={{ zIndex: 1 }}>
 
-                <div className="w-[50vw] lg:w-[20vw] h-[100vh] flex flex-col justify-center text-xl gap-8 pt-16" >
+                <div className="w-[50vw] lg:w-[20vw] h-[90vh] flex flex-col justify-center text-xl gap-8 pt-16" >
                   {menu.map((item,i)=>
                     <>
                   <div className="flex items-center px-5 space-x-5 cursor-pointer">
