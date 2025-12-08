@@ -3,7 +3,7 @@ import React from 'react'
 import { CartItem } from './CartItem'
 import { AddressCard } from './AddressCard'
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
-import { Field, Formik } from 'formik';
+import { Field, Form, Formik } from 'formik';
 import * as Yup from "yup";
 
 const items = [1, 1,]
@@ -48,7 +48,8 @@ const Cart = () => {
     const [open, setOpen] = React.useState(false);
 
     const handleClose = () => setOpen(false);
-    const handleSubmit = () => {
+    const handleSubmit = (values) => {
+        console.log("form value",values)
 
     }
     return (
@@ -127,7 +128,8 @@ const Cart = () => {
                         // validationSchema={validationSchema}
                         onSubmit={handleSubmit}
                     >
-                        <Grid className="contained" spacing={2}>
+                        <Form>
+         <Grid className="contained" spacing={2}>
                             <Grid item xs={12}>
                                 <Field
                                     as={TextField}
@@ -206,6 +208,10 @@ const Cart = () => {
                                 <Button fullWidth variant="contained" type="submit" color="primary" >Confirm the Delivery</Button>
                             </Grid>
                         </Grid>
+                            
+                        </Form>
+                            
+                       
 
                     </Formik>
                 </Box>
