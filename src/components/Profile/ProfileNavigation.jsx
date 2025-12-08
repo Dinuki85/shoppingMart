@@ -22,22 +22,22 @@ export const ProfileNavigation = ({ open, handleClose }) => {
 
     return (
         <div>
-            <Drawer variant={isSmallScreen ? "temporary" : "permanent"} 
-            onClose={handleClose}
-            open={true} 
-            anchor='left' 
-            sx={{ zIndex: 1 }}>
+            <Drawer variant={isSmallScreen ? "temporary" : "permanent"}
+                onClose={handleClose}
+                open={true}
+                anchor='left'
+                sx={{ zIndex: -1, position: "sticky" }}>
 
-                <div className="w-[50vw] lg:w-[20vw] h-[90vh] flex flex-col justify-center text-xl gap-8 pt-16" >
-                  {menu.map((item,i)=>
-                    <>
-                  <div className="flex items-center px-5 space-x-5 cursor-pointer">
-                    {item.icon}
-                    <span>{item.title}</span>
-                  </div>
-{i!== menu.length-1 && <Divider/>}
-                  
-                  </>)}  
+                <div className="w-[50vw] lg:w-[20vw] h-[100vh] flex flex-col justify-center text-xl gap-8 pt-16" >
+                    {menu.map((item, i) =>
+                        <>
+                            <div className="flex items-center px-5 space-x-5 cursor-pointer">
+                                {item.icon}
+                                <span>{item.title}</span>
+                            </div>
+                            {i !== menu.length - 1 && <Divider />}
+
+                        </>)}
                 </div>
             </Drawer>
         </div>
