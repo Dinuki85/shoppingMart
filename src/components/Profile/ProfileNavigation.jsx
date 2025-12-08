@@ -7,6 +7,7 @@ import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { Divider, Drawer, useMediaQuery } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const menu = [
     { title: "Orders", icon: <ShoppingBagIcon /> },
@@ -19,6 +20,13 @@ const menu = [
 ]
 export const ProfileNavigation = ({ open, handleClose }) => {
     const isSmallScreen = useMediaQuery('(max-width:900px)');
+
+    const navigate = useNavigate();
+    
+    const handleNavigate=(item)=>{
+        navigate(`/profile/${item.title.toLoweCase()}`)
+
+    }
 
     return (
         <div>
