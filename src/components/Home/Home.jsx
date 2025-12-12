@@ -22,7 +22,7 @@ const Home = () => {
         <p className='py-3 pb-10 text-2xl font-semibold text-gray-400'>Top Grocery Items</p>
         <MultiItemCarousel/>
       </section>
-      <section classname='px-5 pt-10 lg:px-20'>
+      <section className='px-5 pt-10 lg:px-20'>
         <h1 className='pb-8 text-2xl font-semibold text-gray-400'>Shopping with Handpicked Favorites</h1>
         <div className='flex flex-wrap items-center justify-around gap-5'>
           {

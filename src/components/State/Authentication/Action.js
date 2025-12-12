@@ -13,7 +13,7 @@ import {
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
 } from "./ActionType";
-import { api } from "../../config/api";
+import { api, API_URL } from "../../config/api";
 
 export const registerUser = (reqData) => async (dispatch) => {
   dispatch({ type: REGISTER_REQUEST });
@@ -40,7 +40,7 @@ export const loginUser = (reqData) => async (dispatch) => {
   dispatch({ type: LOGIN_REQUEST });
   try {
     const { data } = await axios.post(
-      `{API_URL}/auth/signin`,
+      `${API_URL}/auth/signing`,
       reqData.userData
     );
     if (data.jwt) localStorage.setItem("jwt", data.jwt);
@@ -97,7 +97,7 @@ export const logout = () => async (dispatch) => {
     console.log("Logout success");
     dispatch({ type: LOGOUT });
   } catch (error) {
-    
+
     console.log("error", error);
   }
 };

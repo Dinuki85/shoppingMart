@@ -8,8 +8,8 @@ import { loginUser } from '../State/Authentication/Action'
 
 
 const initialValue = {
-  emai: "",
-  password: ""
+  email: "",
+  password: " "
 }
 export const LoginForm = () => {
   const dispatch = useDispatch()
@@ -27,7 +27,7 @@ export const LoginForm = () => {
 
       </Typography>
 
-      <Formik onSubmit={handleSubmit} initialValue={initialValue}>
+      <Formik onSubmit={handleSubmit} initialValues={initialValue}>
         <Form>
           <Field
             as={TextField}
