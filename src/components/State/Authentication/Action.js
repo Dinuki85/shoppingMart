@@ -1,11 +1,15 @@
 import axios from "axios";
 import {
+    ADD_TO_FAVORITE_FAILURE,
     ADD_TO_FAVORITE_REQUEST,
   ADD_TO_FAVORITE_SUCCESS,
+  GET_USER_FAILURE,
   GET_USER_REQUEST,
+  LOGIN_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGOUT,
+  REGISTER_FAILURE,
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
 } from "./ActionType";
@@ -27,6 +31,7 @@ export const registerUser = (reqData) => async (dispatch) => {
     dispatch({ type: REGISTER_SUCCESS, payload: data.jwt });
     console.log("register Profile", data);
   } catch (error) {
+    dispatch({type:REGISTER_FAILURE,payload:error})
     console.log("error", error);
   }
 };
@@ -47,6 +52,7 @@ export const loginUser = (reqData) => async (dispatch) => {
     dispatch({ type: LOGIN_SUCCESS, payload: data.jwt });
     console.log("login success", data);
   } catch (error) {
+     dispatch({type:LOGIN_FAILURE,payload:error})
     console.log("error", error);
   }
 };
@@ -62,6 +68,7 @@ export const getUser = (jwt) => async (dispatch) => {
     console.log("User Profile", data);
     dispatch({ type: LOGIN_SUCCESS, payload: data});
   } catch (error) {
+     dispatch({type:GET_USER_FAILURE,payload:error})
     console.log("error", error);
   }
 };
@@ -78,6 +85,7 @@ export const addToFavouriter = (jwt,shopId) => async (dispatch) => {
     console.log("Added to Favorite", data);
     dispatch({ type: ADD_TO_FAVORITE_SUCCESS, payload: data });
   } catch (error) {
+    dispatch({type:ADD_TO_FAVORITE_FAILURE,payload:error})
     console.log("error", error);
   }
 };
@@ -89,6 +97,7 @@ export const logout = () => async (dispatch) => {
     console.log("Logout success");
     dispatch({ type: LOGOUT });
   } catch (error) {
+    
     console.log("error", error);
   }
 };
