@@ -22,7 +22,7 @@ const Profile = () => {
   <Route path = 'orders' element={<Orders/>}/>
   <Route path = 'address' element={<Address/>}/>
   <Route path = 'events' element={<Event/>}/>
-  <Route path = 'favorites' element={<Favorites/>}/>
+  <Route path = 'favourites' element={<Favorites/>}/>
 
   
 </Routes>
