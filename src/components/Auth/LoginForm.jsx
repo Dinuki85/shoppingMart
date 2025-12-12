@@ -27,6 +27,7 @@ export const LoginForm = () => {
             label="email"
             fullWidth
             variant="outlined"
+             margin="normal"
 
           />
           <Field
@@ -35,6 +36,7 @@ export const LoginForm = () => {
             label="password"
             fullWidth
             variant="outlined"
+            margin="normal"
 
           />
 
