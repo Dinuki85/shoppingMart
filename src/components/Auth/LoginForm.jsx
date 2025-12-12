@@ -17,7 +17,7 @@ export const LoginForm = () => {
   return (
 
     <div >
-      <Typography variant='h5' className='text-ceneter'>
+      <Typography variant='h5' className='text-center'>
         Login
 
       </Typography>
