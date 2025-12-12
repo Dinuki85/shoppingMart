@@ -29,7 +29,7 @@ export const registerUser = (reqData) => async (dispatch) => {
       reqData.navigate("/");
     }
     dispatch({ type: REGISTER_SUCCESS, payload: data.jwt });
-    console.log("register Profile", data);
+    console.log("register success", data);
   } catch (error) {
     dispatch({type:REGISTER_FAILURE,payload:error})
     console.log("error", error);
@@ -60,7 +60,7 @@ export const loginUser = (reqData) => async (dispatch) => {
 export const getUser = (jwt) => async (dispatch) => {
   dispatch({ type: GET_USER_REQUEST });
   try {
-    const { data } = await api.get(`/auth/signin`, {
+    const { data } = await api.get(`/users/profile`, {
       headers: {
         Authorization: `Bearer ${jwt}`,
       },
