@@ -12,7 +12,6 @@ import com.online.service.CustomUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -43,14 +42,11 @@ public class AuthController {
     @Autowired
     private CartRepository cartRepository;
 
-    @Autowired
-    private AuthenticationManager authenticationManager; // <-- Added
-
+    // ---------------- Registration ----------------
     @PostMapping("/signup")
     public ResponseEntity<AuthResponse> createUserHandler(@RequestBody User user) throws Exception {
 
-        User isEmailExists = userRepository.findByEmail(user.getEmail());
-        if (isEmailExists != null) {
+        if(userRepository.findByEmail(user.getEmail()) != null){
             throw new Exception("Email is already used with another account");
         }
 
@@ -62,15 +58,17 @@ public class AuthController {
 
         User savedUser = userRepository.save(createUser);
 
+        // Create cart for new user
         Cart cart = new Cart();
         cart.setCustomer(savedUser);
         cartRepository.save(cart);
 
-        // ---------- FIXED: Authenticate using AuthenticationManager ----------
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword())
+        // Generate JWT manually without using raw password
+        Authentication authentication = new UsernamePasswordAuthenticationToken(
+                savedUser.getEmail(),
+                null,
+                savedUser.getAuthorities() // make sure User implements UserDetails
         );
-        SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = jwtProvider.generateToken(authentication);
 
@@ -82,15 +80,30 @@ public class AuthController {
         return new ResponseEntity<>(authResponse, HttpStatus.CREATED);
     }
 
-    @PostMapping("/signin") // <-- Changed from "/signing" to "/signin"
-    public ResponseEntity<AuthResponse> signing(@RequestBody LoginRequest request) {
+    // ---------------- Login ----------------
+    @PostMapping("/signin")
+    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
         String username = request.getEmail();
         String password = request.getPassword();
 
-        Authentication authentication = authenticate(username, password);
+        UserDetails userDetails = customUserDetailService.loadUserByUsername(username);
+        if (userDetails == null) {
+            throw new BadCredentialsException("Invalid Username");
+        }
+
+        if (!passwordEncoder.matches(password, userDetails.getPassword())) {
+            throw new BadCredentialsException("Invalid Password");
+        }
+
+        Authentication authentication = new UsernamePasswordAuthenticationToken(
+                userDetails,
+                null,
+                userDetails.getAuthorities()
+        );
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-
         String role = authorities.isEmpty() ? null : authorities.iterator().next().getAuthority();
 
         String jwt = jwtProvider.generateToken(authentication);
@@ -101,18 +114,5 @@ public class AuthController {
         authResponse.setRole(USER_ROLE.valueOf(role));
 
         return new ResponseEntity<>(authResponse, HttpStatus.OK);
-    }
-
-    private Authentication authenticate(String username, String password) {
-        UserDetails userDetails = customUserDetailService.loadUserByUsername(username);
-        if (userDetails == null) {
-            throw new BadCredentialsException("Invalid UserName");
-        }
-
-        if (!passwordEncoder.matches(password, userDetails.getPassword())) {
-            throw new BadCredentialsException("Invalid Password");
-        }
-
-        return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     }
 }
