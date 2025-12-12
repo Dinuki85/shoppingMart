@@ -12,10 +12,9 @@ import CustomerRouter from "./components/Routers/CustomerRouter";
 function App() {
   return (
     <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
+      <CssBaseline/>
       <Navbar/>
-
-      <Home />
+      <Home/>
       {/*<ShopDetail/>*/}
       {/*<Cart/>*/}
       {/*<Profile/>*/}
