@@ -3,6 +3,8 @@ package com.online.config;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -16,60 +18,47 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import java.util.Arrays;
 import java.util.Collections;
 
-//To enable the spring security
-//Write Spring security configuration
 @Configuration
 @EnableWebSecurity
 public class AppConfig {
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http)throws Exception{
-
-        http.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS) )
-                .authorizeHttpRequests(Authorize ->Authorize.requestMatchers("/api/admin/**").hasAnyRole("SHOP_OWNER","ADMIN")//this tells only  those who are with this role only  have an access
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(Authorize -> Authorize
+                        .requestMatchers("/api/admin/**").hasAnyRole("SHOP_OWNER", "ADMIN")
                         .requestMatchers("/api/**").authenticated()
                         .anyRequest().permitAll()
-                ).addFilterBefore(new JwtTokenValidator(), BasicAuthenticationFilter.class)
-                .csrf(csrf->csrf.disable())
-                .cors(cors->cors.configurationSource(corsConfigurationSource()));
+                )
+                .addFilterBefore(new JwtTokenValidator(), BasicAuthenticationFilter.class)
+                .csrf(csrf -> csrf.disable())
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()));
 
         return http.build();
-
     }
 
-    private CorsConfigurationSource corsConfigurationSource() {
-
-        return new CorsConfigurationSource() {
-            @Override
-            public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
-              CorsConfiguration cfg = new CorsConfiguration();
-
-              cfg.setAllowedOrigins(Arrays.asList(
-                      "http://localhost:3000/"
-              ));
-
-              //Allowed t all the methods (POST,GET,PUT,DELETE,...)
-              cfg.setAllowedMethods(Collections.singletonList("*"));
-
-              //Allow to credentials
-                cfg.setAllowCredentials(true);
-
-                cfg.setAllowedHeaders(Collections.singletonList("*"));
-
-                cfg.setExposedHeaders(Arrays.asList("Authorization"));
-                cfg.setMaxAge(3600L);
-
-               return cfg;
-            }
-        };
-
-
-
-    }
-
-    //Bcrypt the password and store in the database.Any other can't see the password
     @Bean
-    PasswordEncoder passwordEncoder(){
+    public CorsConfigurationSource corsConfigurationSource() {
+        return request -> {
+            CorsConfiguration cfg = new CorsConfiguration();
+            cfg.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // remove trailing slash
+            cfg.setAllowedMethods(Collections.singletonList("*"));
+            cfg.setAllowCredentials(true);
+            cfg.setAllowedHeaders(Collections.singletonList("*"));
+            cfg.setExposedHeaders(Arrays.asList("Authorization"));
+            cfg.setMaxAge(3600L);
+            return cfg;
+        };
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    // -------------------- AuthenticationManager Bean --------------------
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+        return authConfig.getAuthenticationManager();
     }
 }
