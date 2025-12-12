@@ -12,7 +12,7 @@ const initialValue = {
 
 export const RegisterForm = () => {
     const handleSubmit = (values) => {
-        console.log("Form values",values)
+        console.log("Form values", values)
 
     }
     const navigate = useNavigate()
