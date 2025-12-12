@@ -19,7 +19,7 @@ export const registerUser = (reqData) => async (dispatch) => {
   dispatch({ type: REGISTER_REQUEST });
   try {
     const { data } = await axios.post(
-      `{API_URL}/auth/signup`,
+      `${API_URL}/auth/signup`,
       reqData.userData
     );
     if (data.jwt) localStorage.setItem("jwt", data.jwt);
