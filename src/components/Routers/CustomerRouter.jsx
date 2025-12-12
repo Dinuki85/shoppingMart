@@ -5,6 +5,7 @@ import Cart from '../Cart/Cart'
 import ShopDetail from '../Shop/ShopDetail'
 import { Route, Routes } from 'react-router-dom'
 import Profile from '../Profile/Profile'
+import { Auth } from '../Auth/Auth'
 
 const CustomerRouter = () => {
   return (
@@ -18,6 +19,7 @@ const CustomerRouter = () => {
           <Route path='/profile/*' element={<Profile/>}/>
 
         </Routes>
+        <Auth/>
 
 
     </div>
