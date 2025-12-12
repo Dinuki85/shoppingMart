@@ -5,6 +5,7 @@ import {
   ADD_TO_FAVORITE_SUCCESS,
   GET_USER_FAILURE,
   GET_USER_REQUEST,
+  GET_USER_SUCCESS,
   LOGIN_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
@@ -37,6 +38,14 @@ export const authReducer = (state = initialState, action) => {
         jwt: action.payload,
         success: "Register Success",
       };
+      case GET_USER_SUCCESS:
+      return {
+        ...state,
+        isLoading: true,
+        user:action.payload,
+        
+      };
+
 
     case ADD_TO_FAVORITE_SUCCESS:
       return {

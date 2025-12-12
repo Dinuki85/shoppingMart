@@ -6,7 +6,10 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import "./Navbar.css"
 import { Person } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-const Navbar = () => {
+import { useSelector } from 'react-redux';
+
+export const Navbar = () => {
+    const {auth} = useSelector(store=>store)
     const navigate = useNavigate()
     return (
         <Box className='flex items-center px-5 sticky top-0 z-50 py-[.8rem] bg-blue-300 lg:px-20 justify-between'>
@@ -30,7 +33,7 @@ const Navbar = () => {
 
                 </div>
                 <div className=''>
-                    {false ? <Avatar sx={{ bgcolor: "black", color: red.A200 }}>D</Avatar> :
+                    {auth.user?<Avatar sx={{ bgcolor: "black", color: red.A200 }}>{auth.user.fullName[0].toUpperCase()}</Avatar> :
                         <IconButton onClick={() => { navigate("/account/login") }}>
                             <Person />
                         </IconButton>
