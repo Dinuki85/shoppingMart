@@ -85,7 +85,7 @@ export const addToFavouriter = (jwt,shopId) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
   dispatch({ type: ADD_TO_FAVORITE_REQUEST });
   try {
-   
+   localStorage.clear()
     console.log("Logout success");
     dispatch({ type: LOGOUT });
   } catch (error) {
