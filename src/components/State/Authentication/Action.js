@@ -5,6 +5,7 @@ import {
   ADD_TO_FAVORITE_SUCCESS,
   GET_USER_FAILURE,
   GET_USER_REQUEST,
+  GET_USER_SUCCESS,
   LOGIN_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
@@ -66,7 +67,7 @@ export const getUser = (jwt) => async (dispatch) => {
       },
     });
     console.log("User Profile", data);
-    dispatch({ type: LOGIN_SUCCESS, payload: data});
+    dispatch({ type: GET_USER_SUCCESS, payload: data});
   } catch (error) {
      dispatch({type:GET_USER_FAILURE,payload:error})
     console.log("error", error);
@@ -91,7 +92,7 @@ export const addToFavouriter = (jwt,shopId) => async (dispatch) => {
 };
 
 export const logout = () => async (dispatch) => {
-  dispatch({ type: ADD_TO_FAVORITE_REQUEST });
+  
   try {
    localStorage.clear()
     console.log("Logout success");
