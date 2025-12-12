@@ -3,6 +3,8 @@ import Modal from '@mui/material/Modal'
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { style } from '../Cart/Cart';
+import { RegisterForm } from './RegisterForm';
+import { LoginForm } from './LoginForm';
 
 export const Auth = () => {
     const location = useLocation();
@@ -19,7 +21,9 @@ export const Auth = () => {
             
         }>
             <Box sx={style}>
-                Hello
+                {
+                     location.pathname === '/account/register'?<RegisterForm/>:<LoginForm/>
+                }
 
             </Box>
 
