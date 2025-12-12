@@ -11,7 +11,7 @@ favorites:[],
 success:null
 
 }
-const authReducer=(state=initialState,action)=>{
+export const authReducer=(state=initialState,action)=>{
    switch (action.type) {
     case REGISTER_REQUEST:
     case   LOGIN_REQUEST:
