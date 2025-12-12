@@ -9,6 +9,14 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 export const Navbar = () => {
+    const handleAvatarClick=()=>{
+        if(auth.user?.role === "ROLE_CUSTOMER"){
+            navigate("/profile")
+        }
+        else{
+            navigate("/admin/shop")
+        }
+    }
     const {auth} = useSelector(store=>store)
     const navigate = useNavigate()
     return (
@@ -33,7 +41,7 @@ export const Navbar = () => {
 
                 </div>
                 <div className=''>
-                    {auth.user?<Avatar sx={{ bgcolor: "black", color: red.A200 }}>{auth.user?.fullName[0].toUpperCase()}</Avatar> :
+                    {auth.user?<Avatar onClick={handleAvatarClick}sx={{ bgcolor: "black", color: red.A200 }}>{auth.user?.fullName[0].toUpperCase()}</Avatar> :
                         <IconButton onClick={() => { navigate("/account/login") }}>
                             <Person />
                         </IconButton>
