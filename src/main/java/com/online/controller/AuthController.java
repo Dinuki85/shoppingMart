@@ -81,7 +81,7 @@ public class AuthController {
     }
 
     // ---------------- Login ----------------
-    @PostMapping("/signin")
+    @PostMapping("/signing")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
         String username = request.getEmail();
         String password = request.getPassword();
