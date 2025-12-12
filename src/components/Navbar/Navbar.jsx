@@ -33,7 +33,7 @@ export const Navbar = () => {
 
                 </div>
                 <div className=''>
-                    {auth.user?<Avatar sx={{ bgcolor: "black", color: red.A200 }}>{auth.user.fullName[0].toUpperCase()}</Avatar> :
+                    {auth.user?<Avatar sx={{ bgcolor: "black", color: red.A200 }}>{auth.user?.fullName[0].toUpperCase()}</Avatar> :
                         <IconButton onClick={() => { navigate("/account/login") }}>
                             <Person />
                         </IconButton>
