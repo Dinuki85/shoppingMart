@@ -26,8 +26,10 @@ export const getMenuItemsByShopId = (reqData) => {
     dispatch({type:GET_MENU_ITEMS_BY_SHOP_ID_REQUEST});
     try {
       const { data } = await api.get(
-        `/api/grocery/shop/${reqData.shopId}?vegetarian=${reqData.vegetarian}&nonveg=${reqData.nonveg}
-        &seasonal=${reqData.seasonal}&grocery_category=${reqData.groceryCategory}`,
+        `/grocery/shop/${reqData.shopId}?vegetarian=
+        ${reqData.vegetarian}&nonveg=${reqData.nonveg}
+        &seasonal=${reqData.seasonal}&grocery_category=
+        ${reqData.groceryCategory}`,
         {
           headers: {
             Authorization: `Bearer ${reqData.jwt}`,
