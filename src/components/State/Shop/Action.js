@@ -4,7 +4,7 @@ import { api } from "../../config/api";
 import { CREATE_CATEGORY_FAILURE, CREATE_CATEGORY_REQUEST, CREATE_CATEGORY_SUCCESS, CREATE_EVENTS_FAILURE, CREATE_EVENTS_REQUEST, CREATE_EVENTS_SUCCESS, CREATE_SHOP_FAILURE, CREATE_SHOP_REQUEST, CREATE_SHOP_SUCCESS, DELETE_EVENTS_FAILURE, DELETE_EVENTS_REQUEST, DELETE_EVENTS_SUCCESS, DELETE_SHOP_FAILURE, DELETE_SHOP_REQUEST, DELETE_SHOP_SUCCESS, GET_ALL_EVENTS_FAILURE, GET_ALL_EVENTS_REQUEST, GET_ALL_EVENTS_SUCCESS, GET_ALL_SHOP_FAILURE, GET_ALL_SHOP_REQUEST, GET_ALL_SHOP_SUCCESS, GET_SHOP_BY_ID_FAILURE, GET_SHOP_BY_ID_REQUEST, GET_SHOP_BY_ID_SUCCESS, GET_SHOP_BY_USER_ID_FAILURE, GET_SHOP_BY_USER_ID_SUCCESS, GET_SHOPS_CATEGORY_FAILURE, GET_SHOPS_CATEGORY_REQUEST, GET_SHOPS_CATEGORY_SUCCESS, GET_SHOPS_EVENTS_FAILURE, GET_SHOPS_EVENTS_REQUEST, GET_SHOPS_EVENTS_SUCCESS, UPDATE_SHOP_FAILURE, UPDATE_SHOP_REQUEST, UPDATE_SHOP_STATUS_FAILURE, UPDATE_SHOP_STATUS_REQUEST, UPDATE_SHOP_STATUS_SUCCESS, UPDATE_SHOP_SUCCESS } from "./ActionType";
 
 
-export const getAllResturantAction = (token) => 
+export const getAllShoptAction = (token) => 
    {
     return async (dispatch) => {
   dispatch({ type: GET_ALL_SHOP_REQUEST });
@@ -28,9 +28,9 @@ export const getShopById = (reqData) =>{
  return async (dispatch) => {
   dispatch({ type: GET_SHOP_BY_ID_REQUEST });
   try {
-    const response = await api.get(`/shop/find/${reqData.shopId}`,{}, {
+    const response = await api.get(`/shop/find/${reqData.shopId}`, {
       headers: {
-        Authorization: `Bearer ${reqData.jwt}`
+        Authorization: `Bearer ${reqData.jwt}`,
       },
     });
     dispatch({ type:GET_SHOP_BY_ID_SUCCESS, payload:response.data });
@@ -41,7 +41,7 @@ export const getShopById = (reqData) =>{
 } };
 
 
-export const getShopByUserId = () => async (jwt) => {
+export const getShopByUserId = ({jwt})  => {
   return async(dispatch) =>{
      try {
         const {data} = await api.get('/admin/shop/user',{
@@ -60,29 +60,33 @@ export const getShopByUserId = () => async (jwt) => {
     };
   }};
 
-  export const createShop = (reqData) => {
-    console.log("token----------",reqData.token);
- 
-  return async(dispatch) =>{
-    dispatch({type:CREATE_SHOP_REQUEST});
-     try {
-        const {data} = await api.post('/admin/shop',reqData.data,{
-            headers:{
-                Authorization:`Bearer ${reqData.token}`,
-            },
-        })
-        console.log("get shop by user id",data);
-        dispatch({type:CREATE_SHOP_SUCCESS,payload:data})
-    }catch(error){
-        console.log("catch error",error);
-        dispatch({
-            type:CREATE_SHOP_FAILURE,
-            payload:error.message,
-        })
+  // createShop action
+export const createShop = (reqData) => {
+  console.log("token----------", reqData.token);
+
+  return async (dispatch) => {
+    dispatch({ type: CREATE_SHOP_REQUEST });
+    try {
+      const { data } = await api.post('/admin/shop', reqData.data, {
+        headers: {
+          Authorization: `Bearer ${reqData.token}`,
+        },
+      });
+      console.log("Created shop:", data);
+      dispatch({ type: CREATE_SHOP_SUCCESS, payload: data });
+
+      // <-- Added: fetch all shops to update UI
+      dispatch(getAllShoptAction(reqData.token));
+    } catch (error) {
+      console.log("catch error", error);
+      dispatch({
+        type: CREATE_SHOP_FAILURE,
+        payload: error.message,
+      });
     }
   };
+};
 
-  };
 
   export const updateshop = ({ shopId, shopData, jwt }) => {
   return async (dispatch) => {
@@ -152,7 +156,7 @@ export const createEventAction = ({ data, jwt,shopId }) => {
 
     try {
       const res = await api.post(
-       ` /admin/events/shop/${shopId}`,
+       `/admin/events/shop/${shopId}`,
         data,
         {
           headers: {
@@ -174,7 +178,7 @@ export const getAllEvents = ({ jwt }) => {
     dispatch({ type: GET_ALL_EVENTS_REQUEST });
 
     try {
-      const res = await api.get(`api/events`, {
+      const res = await api.get(`/events`, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },

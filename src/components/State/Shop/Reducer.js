@@ -29,7 +29,8 @@ const shopReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        usersShop:action.payload
+        usersShop:action.data,
+         
       };
     case GET_ALL_SHOP_SUCCESS:
       return {
