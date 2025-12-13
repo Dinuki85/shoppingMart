@@ -2,13 +2,11 @@ package com.online.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,46 +20,44 @@ import java.util.List;
 
 public class JwtTokenValidator extends OncePerRequestFilter {
 
-    //validating JWT token
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain)
+            throws ServletException, IOException {
 
-        //Access the JWT_HEADER
-        String jwt=request.getHeader(JwtConstant.JWT_HEADER);
+        String jwt = request.getHeader(JwtConstant.JWT_HEADER);
 
-        //If jwt not null validating the header
-        if (jwt!=null){
+        if (jwt != null && jwt.startsWith("Bearer ")) {
+
             jwt = jwt.substring(7);
 
-            try{
-
+            try {
                 SecretKey key = Keys.hmacShaKeyFor(JwtConstant.SECRET_KEY.getBytes());
-             Claims claims =   Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt).getBody();
 
-             String email = String.valueOf(claims.get("email"))  ;
-             String authorities=String.valueOf(claims.get("authorities"));
+                Claims claims = Jwts.parserBuilder()
+                        .setSigningKey(key)
+                        .build()
+                        .parseClaimsJws(jwt)
+                        .getBody();
 
+                String email = String.valueOf(claims.get("email"));
+                String authorities = String.valueOf(claims.get("authorities"));
 
-             //Convert string authority into granted authority
-                List<GrantedAuthority> auth = AuthorityUtils.commaSeparatedStringToAuthorityList(authorities);
+                List<GrantedAuthority> auth =
+                        AuthorityUtils.commaSeparatedStringToAuthorityList(authorities);
 
-                Authentication authentication = new UsernamePasswordAuthenticationToken(email,null,auth);
+                Authentication authentication =
+                        new UsernamePasswordAuthenticationToken(email, null, auth);
+
                 SecurityContextHolder.getContext().setAuthentication(authentication);
 
-
+            } catch (Exception e) {
+                // ✅ IMPORTANT: DO NOT THROW EXCEPTION
+                SecurityContextHolder.clearContext();
             }
-
-            catch(Exception e){
-                throw new BadCredentialsException("Invalid Token");
-
-            }
-
         }
-        filterChain.doFilter(request,response);
 
-
-
-
-
+        filterChain.doFilter(request, response);
     }
 }

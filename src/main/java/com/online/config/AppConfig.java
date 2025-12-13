@@ -26,6 +26,9 @@ public class AppConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(Authorize -> Authorize
+                        // ✅ ADDED (ONLY THIS LINE)
+                        .requestMatchers("/auth/**").permitAll()
+
                         .requestMatchers("/api/admin/**").hasAnyRole("SHOP_OWNER", "ADMIN")
                         .requestMatchers("/api/**").authenticated()
                         .anyRequest().permitAll()
@@ -41,7 +44,7 @@ public class AppConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         return request -> {
             CorsConfiguration cfg = new CorsConfiguration();
-            cfg.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // remove trailing slash
+            cfg.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
             cfg.setAllowedMethods(Collections.singletonList("*"));
             cfg.setAllowCredentials(true);
             cfg.setAllowedHeaders(Collections.singletonList("*"));
@@ -56,7 +59,6 @@ public class AppConfig {
         return new BCryptPasswordEncoder();
     }
 
-    // -------------------- AuthenticationManager Bean --------------------
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
         return authConfig.getAuthenticationManager();
