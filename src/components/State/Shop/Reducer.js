@@ -12,7 +12,7 @@ const initialState = {
   categories: [],
 };
 
-const Reducer = (state = initialState, action) => {
+const shopReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.CREATE_SHOP_REQUEST:
     case actionTypes.GET_ALL_SHOP_REQUEST:
@@ -124,4 +124,4 @@ const Reducer = (state = initialState, action) => {
   }
 };
 
-export default Reducer;
+export default shopReducer;
