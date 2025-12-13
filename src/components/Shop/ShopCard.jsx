@@ -7,7 +7,9 @@ const ShopCard = ({item}) => {
   return (
     <Card className=' w-[18rem] '>
        <div classame={`${true? 'cursor-pointer':"cursor-not-allowed"}'relative`}>
-       <img className='w-full h-[10rem] rounded-t-md object-cover'src="https://images.pexels.com/photos/35023463/pexels-photo-35023463.jpeg"  alt=""/>
+       <img className='w-full h-[10rem] rounded-t-md object-cover'
+       src={item.images[1]} 
+        alt=""/>
 
         <Chip
         size = "small"
