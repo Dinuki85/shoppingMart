@@ -38,7 +38,7 @@ const Home = () => {
         <h1 className='pb-8 text-2xl font-semibold text-gray-400'>Shopping with Handpicked Favorites</h1>
         <div className='flex flex-wrap items-center justify-around gap-5'>
           {
-            shops.map((item) => <ShopCard />)
+            shop.shops.map((item) => <ShopCard item={item}/>)
           }
 
         </div>

@@ -3,7 +3,7 @@ import React from 'react'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
-const ShopCard = () => {
+const ShopCard = ({item}) => {
   return (
     <Card className=' w-[18rem] '>
        <div classame={`${true? 'cursor-pointer':"cursor-not-allowed"}'relative`}>
@@ -14,7 +14,7 @@ const ShopCard = () => {
         className='absolute top-2 left-2'
         color={true?"success":"error"}
         label={true?"open":"closed"}
-        / >
+        />
 
         
 
@@ -34,6 +34,6 @@ const ShopCard = () => {
 
     </Card>
   )
-}
+};
 
 export default ShopCard

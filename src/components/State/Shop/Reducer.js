@@ -1,5 +1,32 @@
-import { CREATE_CATEGORY_FAILURE, CREATE_CATEGORY_SUCCESS, CREATE_EVENTS_FAILURE, CREATE_EVENTS_SUCCESS, CREATE_SHOP_FAILURE, CREATE_SHOP_REQUEST, CREATE_SHOP_SUCCESS, DELETE_EVENTS_SUCCESS, DELETE_SHOP_FAILURE, DELETE_SHOP_REQUEST, DELETE_SHOP_SUCCESS, GET_ALL_EVENTS_SUCCESS, GET_ALL_SHOP_FAILURE, GET_ALL_SHOP_REQUEST, GET_ALL_SHOP_SUCCESS, GET_SHOP_BY_ID_FAILURE, GET_SHOP_BY_ID_REQUEST, GET_SHOP_BY_ID_SUCCESS, GET_SHOP_BY_USER_ID_SUCCESS, GET_SHOPS_CATEGORY_FAILURE, GET_SHOPS_CATEGORY_REQUEST, GET_SHOPS_CATEGORY_SUCCESS, GET_SHOPS_EVENTS_SUCCESS, UPDATE_SHOP_FAILURE, UPDATE_SHOP_REQUEST, UPDATE_SHOP_STATUS_SUCCESS, UPDATE_SHOP_SUCCESS } from "./ActionType";
-
+import {
+  CREATE_CATEGORY_FAILURE,
+  CREATE_CATEGORY_SUCCESS,
+  CREATE_EVENTS_FAILURE,
+  CREATE_EVENTS_SUCCESS,
+  CREATE_SHOP_FAILURE,
+  CREATE_SHOP_REQUEST,
+  CREATE_SHOP_SUCCESS,
+  DELETE_EVENTS_SUCCESS,
+  DELETE_SHOP_FAILURE,
+  DELETE_SHOP_REQUEST,
+  DELETE_SHOP_SUCCESS,
+  GET_ALL_EVENTS_SUCCESS,
+  GET_ALL_SHOP_FAILURE,
+  GET_ALL_SHOP_REQUEST,
+  GET_ALL_SHOP_SUCCESS,
+  GET_SHOP_BY_ID_FAILURE,
+  GET_SHOP_BY_ID_REQUEST,
+  GET_SHOP_BY_ID_SUCCESS,
+  GET_SHOP_BY_USER_ID_SUCCESS,
+  GET_SHOPS_CATEGORY_FAILURE,
+  GET_SHOPS_CATEGORY_REQUEST,
+  GET_SHOPS_CATEGORY_SUCCESS,
+  GET_SHOPS_EVENTS_SUCCESS,
+  UPDATE_SHOP_FAILURE,
+  UPDATE_SHOP_REQUEST,
+  UPDATE_SHOP_STATUS_SUCCESS,
+  UPDATE_SHOP_SUCCESS,
+} from "./ActionType";
 
 const initialState = {
   shops: [],
@@ -29,9 +56,10 @@ const shopReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        usersShop:action.data,
-         
+        usersShop: action.payload,
+        shops: [...state.shops, action.payload], // add new shop to shops list
       };
+
     case GET_ALL_SHOP_SUCCESS:
       return {
         ...state,
@@ -58,12 +86,8 @@ const shopReducer = (state = initialState, action) => {
         ...state,
         error: null,
         loading: false,
-        shops: state.shops.filter(
-          (item) => item.id !== action.payload
-        ),
-        usersshop: state.usersshop.filter(
-          (item) => item.id !== action.payload
-        ),
+        shops: state.shops.filter((item) => item.id !== action.payload),
+        usersshop: state.usersshop.filter((item) => item.id !== action.payload),
       };
 
     case CREATE_EVENTS_SUCCESS:
@@ -71,7 +95,7 @@ const shopReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         events: [...state.events, action.payload],
-       shopsEvents: [...state.shopsEvents, action.payload],
+        shopsEvents: [...state.shopsEvents, action.payload],
       };
     case GET_ALL_EVENTS_SUCCESS:
       return {
