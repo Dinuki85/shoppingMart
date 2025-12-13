@@ -1,5 +1,5 @@
+import { CREATE_CATEGORY_FAILURE, CREATE_CATEGORY_SUCCESS, CREATE_EVENTS_FAILURE, CREATE_EVENTS_SUCCESS, CREATE_SHOP_FAILURE, CREATE_SHOP_REQUEST, CREATE_SHOP_SUCCESS, DELETE_EVENTS_SUCCESS, DELETE_SHOP_FAILURE, DELETE_SHOP_REQUEST, DELETE_SHOP_SUCCESS, GET_ALL_EVENTS_SUCCESS, GET_ALL_SHOP_FAILURE, GET_ALL_SHOP_REQUEST, GET_ALL_SHOP_SUCCESS, GET_SHOP_BY_ID_FAILURE, GET_SHOP_BY_ID_REQUEST, GET_SHOP_BY_ID_SUCCESS, GET_SHOP_BY_USER_ID_SUCCESS, GET_SHOPS_CATEGORY_FAILURE, GET_SHOPS_CATEGORY_REQUEST, GET_SHOPS_CATEGORY_SUCCESS, GET_SHOPS_EVENTS_SUCCESS, UPDATE_SHOP_FAILURE, UPDATE_SHOP_REQUEST, UPDATE_SHOP_STATUS_SUCCESS, UPDATE_SHOP_SUCCESS } from "./ActionType";
 
-import * as actionTypes from "./ActionTypes";
 
 const initialState = {
   shops: [],
@@ -14,46 +14,45 @@ const initialState = {
 
 const shopReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.CREATE_SHOP_REQUEST:
-    case actionTypes.GET_ALL_SHOP_REQUEST:
-    case actionTypes.DELETE_SHOP_REQUEST:
-    case actionTypes.UPDATE_SHOP_REQUEST:
-    case actionTypes.GET_SHOP_BY_ID_REQUEST:
-    case actionTypes.CREATE_SHOPS_REQUEST:
-    case actionTypes.GET_SHOPS_CATEGORY_REQUEST:
+    case CREATE_SHOP_REQUEST:
+    case GET_ALL_SHOP_REQUEST:
+    case DELETE_SHOP_REQUEST:
+    case UPDATE_SHOP_REQUEST:
+    case GET_SHOP_BY_ID_REQUEST:
+    case GET_SHOPS_CATEGORY_REQUEST:
       return {
         ...state,
         loading: true,
         error: null,
       };
-    case actionTypes.CREATE_SHOP_SUCCESS:
+    case CREATE_SHOP_SUCCESS:
       return {
         ...state,
         loading: false,
         usersShop:action.payload
       };
-    case actionTypes.GET_ALL_SHOP_SUCCESS:
+    case GET_ALL_SHOP_SUCCESS:
       return {
         ...state,
         loading: false,
         shops: action.payload,
       };
-    case actionTypes.GET_SHOP_BY_ID_SUCCESS:
+    case GET_SHOP_BY_ID_SUCCESS:
       return {
         ...state,
         loading: false,
         shop: action.payload,
       };
-    case actionTypes.GET_SHOP_BY_USER_ID_SUCCESS:
-    case actionTypes.UPDATE_SHOP_STATUS_SUCCESS:
-    case actionTypes.UPDATE_SHOP_SUCCESS:
+    case GET_SHOP_BY_USER_ID_SUCCESS:
+    case UPDATE_SHOP_STATUS_SUCCESS:
+    case UPDATE_SHOP_SUCCESS:
       return {
         ...state,
         loading: false,
         usersShop: action.payload,
       };
 
-    case actionTypes.DELETE_SHOP_SUCCESS:
+    case DELETE_SHOP_SUCCESS:
       return {
         ...state,
         error: null,
@@ -66,26 +65,26 @@ const shopReducer = (state = initialState, action) => {
         ),
       };
 
-    case actionTypes.CREATE_EVENTS_SUCCESS:
+    case CREATE_EVENTS_SUCCESS:
       return {
         ...state,
         loading: false,
         events: [...state.events, action.payload],
        shopsEvents: [...state.shopsEvents, action.payload],
       };
-    case actionTypes.GET_ALL_EVENTS_SUCCESS:
+    case GET_ALL_EVENTS_SUCCESS:
       return {
         ...state,
         loading: false,
         events: action.payload,
       };
-    case actionTypes.GET_SHOP_EVENTS_SUCCESS:
+    case GET_SHOPS_EVENTS_SUCCESS:
       return {
         ...state,
         loading: false,
         eventssEvents: action.payload,
       };
-    case actionTypes.DELETE_EVENTS_SUCCESS:
+    case DELETE_EVENTS_SUCCESS:
       return {
         ...state,
         loading: false,
@@ -94,26 +93,26 @@ const shopReducer = (state = initialState, action) => {
           (item) => item.id !== action.payload
         ),
       };
-    case actionTypes.CREATE_CATEGORY_SUCCESS:
+    case CREATE_CATEGORY_SUCCESS:
       return {
         ...state,
         loading: false,
         categories: [...state.categories, action.payload],
       };
-    case actionTypes.GET_SHOP_CATEGORY_SUCCESS:
+    case GET_SHOPS_CATEGORY_SUCCESS:
       return {
         ...state,
         loading: false,
         categories: action.payload,
       };
-    case actionTypes.CREATE_SHOP_FAILURE:
-    case actionTypes.GET_ALL_SHOP_FAILURE:
-    case actionTypes.DELETE_SHOP_FAILURE:
-    case actionTypes.UPDATE_SHOP_FAILURE:
-    case actionTypes.GET_SHOP_BY_ID_FAILURE:
-    case actionTypes.CREATE_EVENTS_FAILURE:
-    case actionTypes.CREATE_CATEGORY_FAILURE:
-    case actionTypes.GET_SHOPS_CATEGORY_FAILURE:
+    case CREATE_SHOP_FAILURE:
+    case GET_ALL_SHOP_FAILURE:
+    case DELETE_SHOP_FAILURE:
+    case UPDATE_SHOP_FAILURE:
+    case GET_SHOP_BY_ID_FAILURE:
+    case CREATE_EVENTS_FAILURE:
+    case CREATE_CATEGORY_FAILURE:
+    case GET_SHOPS_CATEGORY_FAILURE:
       return {
         ...state,
         loading: false,

@@ -4,7 +4,7 @@ import {
   GET_WEIGHTS,
   GET_WEIGHT_CATEGORY_SUCCESS,
   UPDATE_STOCK,
-} from "./ActionType";
+} from "./ActionTypes";
 
 const initialState = {
   weights: [],
