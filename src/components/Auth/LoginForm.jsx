@@ -9,7 +9,7 @@ import { loginUser } from '../State/Authentication/Action'
 
 const initialValue = {
   email: "",
-  password: " "
+  password: ""
 }
 export const LoginForm = () => {
   const dispatch = useDispatch()
