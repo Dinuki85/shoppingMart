@@ -97,7 +97,7 @@ public class ShopServiceImpl  implements ShopService{
     //Search shop
     @Override
     public List<Shop> searchShop(String keyword) {
-        return shopRepository.findBySearchQUesry(keyword) ;
+        return shopRepository.findBySearchQuery(keyword) ;
     }
 
     //Find the shop by shop id

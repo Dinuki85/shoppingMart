@@ -37,10 +37,8 @@ public class ShopController {
     @GetMapping("/getAll")
     public ResponseEntity<List<Shop>> getAllShops(
             @RequestHeader("Authorization" ) String jwt) throws Exception {
-        User user =userService.findUserByJwtToken(jwt);
-
+        User user = userService.findUserByJwtToken(jwt);
         List<Shop> shop = shopService.getAllShops();
-
         return new ResponseEntity<>(shop, HttpStatus.OK);
     }
 
@@ -48,10 +46,8 @@ public class ShopController {
     public ResponseEntity<Shop> findShopById(
             @PathVariable Long id,
             @RequestHeader("Authorization" ) String jwt) throws Exception {
-        User user =userService.findUserByJwtToken(jwt);
-
+        User user = userService.findUserByJwtToken(jwt);
         Shop shop = shopService.findShopBYId(id);
-
         return new ResponseEntity<>(shop, HttpStatus.OK);
     }
 

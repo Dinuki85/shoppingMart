@@ -9,9 +9,9 @@ import java.util.List;
 public interface ShopRepository extends JpaRepository<Shop,Long> {
 
     //Search for the shops
-    @Query("SELECT s FROM Shop s WHERE lower(s.name) LIKE lower(concat('&',:query,'%')) " +
-            "OR lower(s.cuisineType) LIKE lower(concat('%',:query,'%'))  ")
-    List<Shop> findBySearchQUesry(String query);
+    @Query("SELECT s FROM Shop s WHERE lower(s.name) LIKE lower(concat('%',:query,'%')) " +
+            "OR lower(s.cuisineType) LIKE lower(concat('%',:query,'%'))")
+    List<Shop> findBySearchQuery(String query); // fixed method name typo
 
     Shop findByOwnerId(Long userId);
 
