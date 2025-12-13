@@ -44,7 +44,7 @@ export const fetchSHOPOrder = ({shopId,orderStatus,jwt}) => {
       dispatch({ type: GET_SHOP_ORDER_REQUEST });
 
       const { data } = await api.get(
-        `/api/admin/order/restaurant/${shopId}`,{
+        `/admin/order/shop/${shopId}`,{
           params: { order_status:orderStatus},
           headers: {
             Authorization: `Bearer ${jwt}`,
