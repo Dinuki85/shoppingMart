@@ -1,6 +1,6 @@
 // action.js
 import axios from 'axios';
-import { CREATE_INGREDIENT_CATEGORY_FAILURE, CREATE_INGREDIENT_CATEGORY_SUCCESS, CREATE_INGREDIENT_SUCCESS, GET_INGREDIENTS, GET_INGREDIENT_CATEGORY_FAILURE, GET_INGREDIENT_CATEGORY_SUCCESS, UPDATE_STOCK } from './ActionType';
+import { CREATE_WEIGHTS_CATEGORY_FAILURE, CREATE_WEIGHTS_CATEGORY_SUCCESS, CREATE_WEIGHTS_SUCCESS, GET_WEIGHTS, GET_WEIGHTS_CATEGORY_FAILURE, GET_WEIGHTS_CATEGORY_SUCCESS, UPDATE_STOCK } from './ActionType';
 import { API_URL, api } from '../../../config/api';
 
 export const getWeightsOfshop = ({id,jwt}) => {
@@ -11,10 +11,10 @@ export const getWeightsOfshop = ({id,jwt}) => {
           Authorization: `Bearer ${jwt}`,
         },
       });
-      console.log("get all ingredients ",response.data)
+      console.log("get all WEIGHTS ",response.data)
       dispatch({
-        type: GET_INGREDIENTS,
-        payload: response.data // Assuming the response contains the ingredients data
+        type: GET_WEIGHTS,
+        payload: response.data // Assuming the response contains the WEIGHTS data
       });
     } catch (error) {
         console.log("error",error)
@@ -23,17 +23,17 @@ export const getWeightsOfshop = ({id,jwt}) => {
   };
 };
 
-export const createIngredient = ({data,jwt}) => {
+export const createWEIGHTS= ({data,jwt}) => {
   return async (dispatch) => {
     try {
-      const response = await api.post(`/api/admin/ingredients`,data,{
+      const response = await api.post(`/admin/weights`,data,{
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
       });
-      console.log("create ingredients ",response.data)
+      console.log("create WEIGHTS ",response.data)
       dispatch({
-        type: CREATE_INGREDIENT_SUCCESS,
+        type: CREATE_WEIGHTS_SUCCESS,
         payload: response.data 
       });
     } catch (error) {
@@ -43,18 +43,18 @@ export const createIngredient = ({data,jwt}) => {
   };
 };
 
-export const createIngredientCategory = ({data,jwt}) => {
+export const createWEIGHTSCategory = ({data,jwt}) => {
   console.log("data ",data,"jwt",jwt)
   return async (dispatch) => {
     try {
-      const response = await api.post(`/api/admin/ingredients/category`,data,{
+      const response = await api.post(`/admin/weights/category`,data,{
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
       });
-      console.log("create ingredients category",response.data)
+      console.log("create WEIGHTS category",response.data)
       dispatch({
-        type:CREATE_INGREDIENT_CATEGORY_SUCCESS,
+        type:CREATE_WEIGHTS_CATEGORY_SUCCESS,
         payload: response.data 
       });
     } catch (error) {
@@ -64,17 +64,17 @@ export const createIngredientCategory = ({data,jwt}) => {
   };
 };
 
-export const getIngredientCategory = ({id,jwt}) => {
+export const getWEIGHTSategory = ({id,jwt}) => {
   return async (dispatch) => {
     try {
-      const response = await api.get(`/api/admin/ingredients/restaurant/${id}/category`,{
+      const response = await api.get(`/admin/weights/shop/${id}/category`,{
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
       });
-      console.log("get ingredients category",response.data)
+      console.log("get WEIGHTS category",response.data)
       dispatch({
-        type: GET_INGREDIENT_CATEGORY_SUCCESS,
+        type: GET_WEIGHTS_CATEGORY_SUCCESS,
         payload: response.data 
       });
     } catch (error) {
@@ -84,10 +84,10 @@ export const getIngredientCategory = ({id,jwt}) => {
   };
 };
 
-export const updateStockOfIngredient = ({id,jwt}) => {
+export const updateStockOfWEIGHTS= ({id,jwt}) => {
   return async (dispatch) => {
     try {
-      const {data} = await api.put(`/api/admin/ingredients/${id}/stoke`, 
+      const {data} = await api.put(`/admin/WEIGHTS/${id}/stock`, 
       { },
       {
         headers: {
@@ -98,7 +98,7 @@ export const updateStockOfIngredient = ({id,jwt}) => {
         type: UPDATE_STOCK,
         payload: data
       });
-      console.log("update ingredients stock ",data)
+      console.log("update WEIGHTS stock ",data)
     } catch (error) {
         console.log("error ",error)
       // Handle error, dispatch an error action, etc.
