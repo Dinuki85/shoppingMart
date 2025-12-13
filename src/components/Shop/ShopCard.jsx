@@ -8,7 +8,7 @@ const ShopCard = ({item}) => {
     <Card className=' w-[18rem] '>
        <div classame={`${true? 'cursor-pointer':"cursor-not-allowed"}'relative`}>
        <img className='w-full h-[10rem] rounded-t-md object-cover'
-       src={item.images[0]} 
+       src={item.images[1]} 
         alt=""/>
 
         <Chip
@@ -22,8 +22,8 @@ const ShopCard = ({item}) => {
 
         </div>
         <div className='justify-between w-full p-4 textPart lg:flex'>
-            <p className='text-lg font-semibold'>Sri Lankan Grocery Shops</p>
-            <p className='text-sm text-gray-500'>Dive into your favourite Grocery items from ........</p>
+            <p className='text-lg font-semibold'>{item.name}</p>
+            <p className='text-sm text-gray-500'>{item.description}</p>
             
         </div>
 
