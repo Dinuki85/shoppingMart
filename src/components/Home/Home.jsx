@@ -4,7 +4,13 @@ import MultiItemCarousel from './MultiItemCarousel'
 import ShopCard from '../Shop/ShopCard'
 const shop=[1,1,1,1,1,1,1,1,1,1] //Take the dummy array
 const Home = () => {
+const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (auth.user) {
+      dispatch(getAllRestaurantsAction(localStorage.getItem("jwt")));
+    }
+  }, [auth.user]);
   return (
     <div className='pb-10'>
       <section className='relative flex flex-col justify-center banner -z-50 item-center'>
